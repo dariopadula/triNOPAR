@@ -2,6 +2,7 @@
 
 export("%>%")
 export(bancoTAI)
+export(creathetas)
 export(genBancoDF)
 export(genitmodelo)
 importFrom(magrittr,"%>%")
