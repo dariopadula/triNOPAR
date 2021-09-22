@@ -4,6 +4,10 @@
 #' Los nucleos multidimensionales son: Normal multiplicativo (multinorm), Nucleo Epanechnikov esferico (epaesf),
 #'  Normal multivariada (multinorm)
 #'
+#'
+#' @name nucleosAll
+#' @aliases normal
+#' @aliases epa
 #' @param x vector al que se le aplica el nucleo
 #' @param h amplitud de la ventana.
 #' @param th puntos donde se tiene valores de la funcion.
@@ -16,7 +20,7 @@
 #' h = 0.05
 #' th = runif(1000)
 #' res = normal(x = xeval,h = h,th = th)
-
+#'@rdname nucleosAll
 
 
 normal=function(x,h,th){
@@ -27,19 +31,27 @@ normal=function(x,h,th){
 
 #Nucleo Epanechnikov
 
+#'@rdname nucleosAll
+#' @export
+#'
 epa=function(x){
   res=numeric(length(x))
   res=(3/4)*(1-((x-th)/h)^2)*(abs(((x-th)/h))<=1)
   return(list(res=res))
 }
 
+#' @rdname nucleosAll
+#' @export
+#'
 
 acuepa=function(x){
   inte=(3/4)*(((x-th)/h)-(((x-th)/h)^3)/3+2/3)*(abs(((x-th)/h))<=1)
   return(list(inte))
 }
 
-
+#' @rdname nucleosAll
+#' @export
+#'
 
 #Nucleo uniforme
 
@@ -49,6 +61,9 @@ forme=function(x){
   return(list(res=res))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 
 acunif=function(x){
@@ -56,6 +71,9 @@ acunif=function(x){
   return(list(inte))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 #Nucleo Triangular
 
@@ -65,7 +83,9 @@ trian=function(x){
   return(list(res=res))
 }
 
-
+#'@rdname nucleosAll
+#' @export
+#'
 
 acutrian=function(x){
   if(((x-th)/h)>0){
@@ -76,6 +96,9 @@ acutrian=function(x){
   return(list(inte))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 #Nucleo Biweight
 
@@ -85,6 +108,9 @@ Biwei=function(x){
   return(list(res=res))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 acubiw=function(x){
   inte=(15/16)*(((x-th)/h)-(2/3)*((x-th)/h)^3+(1/5)*((x-th)/h)^5+(8/15))*(abs(((x-th)/h))<=1)
@@ -92,6 +118,9 @@ acubiw=function(x){
 }
 
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 #Nucleo Triweight
 
@@ -101,12 +130,18 @@ Triwei=function(x){
   return(list(res=res))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 acutri=function(x){
   inte=(35/32)*(((x-th)/h)-((x-th)/h)^3+(3/5)*((x-th)/h)^5-(((x-th)/h)^7)/7+(16/35))*(abs(((x-th)/h))<=1)
   return(list(inte))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 #Nucleo Tricubo
 
@@ -116,6 +151,9 @@ Trcubo=function(x){
   return(list(res=res))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 acucub=function(x){
   if(((x-th)/h)>0){
@@ -126,6 +164,9 @@ acucub=function(x){
   return(list(inte))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 #Nucleo Coseno
 
@@ -135,6 +176,9 @@ Cos=function(x){
   return(list(res=res))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 acucos=function(x){
   inte=(1/2)*(sin((pi/2)*((x-th)/h))+1)*(abs(((x-th)/h))<=1)
@@ -142,6 +186,9 @@ acucos=function(x){
 }
 
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 #Nucleo Logistico
 
@@ -152,6 +199,9 @@ Logis=function(x){
   return(list(res=res))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 aculogis=function(x){
   inte=(1/2)*(sinh(((x-th)/h))/(1+cosh(((x-th)/h)))+1)
@@ -159,6 +209,9 @@ aculogis=function(x){
 }
 
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 #Nucleo Silverman
 
@@ -168,6 +221,9 @@ Silver=function(x){
   return(list(res=res))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 #Nucleo Sigmoideo
 
@@ -177,12 +233,19 @@ Sigmo=function(x){
   return(list(res=res))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 acusig=function(x){
   inte=(2/pi)*(atan(exp(((x-th)/h))))
   return(list(inte))
 }
 
+
+#'@rdname nucleosAll
+#' @export
+#'
 
 #Nucleo normal multivariado
 
@@ -200,7 +263,9 @@ multinorm=function(x,sigma){
   return(list(res=res))
 }
 
-
+#'@rdname nucleosAll
+#' @export
+#'
 
 #Nucleo Epanechnikov esferico
 
@@ -214,6 +279,9 @@ epaesf=function(x){
   return(list(res=res))
 }
 
+#'@rdname nucleosAll
+#' @export
+#'
 
 #Normal multiplicativo
 normmult=function(x){
