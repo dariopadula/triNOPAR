@@ -17,4 +17,5 @@ Imports:
     dplyr,
     magrittr,
     mirt,
+    psych,
     stats
