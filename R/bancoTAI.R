@@ -14,7 +14,6 @@
 #' diseno=matrix(c(25,"2PL"),ncol=2,byrow = FALSE)
 #' bancTeor = bancoTAI(bancoIT,diseno)
 
-# Borre todo
 
 bancoTAI<-function(banco,diseno){
 
