@@ -18,6 +18,7 @@
 
 
 # Este cambio lo hizo dario
+# Borre todo
 
 bancoTAI<-function(banco,diseno){
 
