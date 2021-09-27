@@ -15,7 +15,7 @@
 #' bancTeor = bancoTAI(bancoIT,diseno)
 
 
-
+# Este cambio lo hizo dario
 
 bancoTAI<-function(banco,diseno){
 
