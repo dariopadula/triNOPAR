@@ -25,7 +25,7 @@
 \alias{multinorm}
 \alias{epaesf}
 \alias{normmult}
-\title{Condunto de nucleos unidimensionales y multidimensionelaes}
+\title{Conjunto de nucleos unidimensionales y multidimensionales}
 \usage{
 normal(x, h, th)
 

@@ -1,5 +1,5 @@
 
-#' Condunto de nucleos unidimensionales y multidimensionelaes
+#' Conjunto de nucleos unidimensionales y multidimensionales
 #'
 #' Los nucleos multidimensionales son: Normal multiplicativo (multinorm), Nucleo Epanechnikov esferico (epaesf),
 #'  Normal multivariada (multinorm)
