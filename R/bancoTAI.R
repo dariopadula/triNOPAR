@@ -15,6 +15,7 @@
 #' bancTeor = bancoTAI(bancoIT,diseno)
 
 # Borre todo
+# soy ceci
 
 bancoTAI<-function(banco,diseno){
 
