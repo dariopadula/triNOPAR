@@ -17,6 +17,7 @@
 
 
 
+
 bancoTAI<-function(banco,diseno){
 
   nti = nrow(diseno)
