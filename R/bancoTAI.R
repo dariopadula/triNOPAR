@@ -13,11 +13,7 @@
 #' bancoIT=genitmodelo(100,"2PL",m2pl,bancoIT)
 #' diseno=matrix(c(25,"2PL"),ncol=2,byrow = FALSE)
 #' bancTeor = bancoTAI(bancoIT,diseno)
-#' este es porque Dario saco el otro
-#' este el el que aclara todo
 
-
-# Este cambio lo hizo dario
 # Borre todo
 
 bancoTAI<-function(banco,diseno){
