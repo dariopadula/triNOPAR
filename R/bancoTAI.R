@@ -16,7 +16,7 @@
 #' este es porque Dario saco el otro
 
 
-
+# Este cambio lo hizo dario
 
 bancoTAI<-function(banco,diseno){
 
