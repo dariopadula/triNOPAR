@@ -1,4 +1,3 @@
-
 #' Genera un data frame vacio con un determinado numero de calumnas fijas de characters y un
 #' conjunto de columnas numericas
 #'
