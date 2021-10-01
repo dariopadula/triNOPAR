@@ -28,7 +28,7 @@ Esta funcion estima para las curvas isotonicas la derivada primera
 }
 \examples{
 # No correr
-# resDer = derISO_Info(icciso,puntuni,nucleo = normal)
 # icciso = icciso1[['resfin']]
 # puntuni = icciso1[['puntos']]
+# resDer = derISO_Info(icciso,puntuni,nucleo = normal)
 }
