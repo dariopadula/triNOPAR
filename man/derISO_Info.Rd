@@ -27,8 +27,10 @@ Una lista donde con:
 Esta funcion estima para las curvas isotonicas la derivada primera
 }
 \examples{
+\dontrun{
 # No correr
 # icciso = icciso1[['resfin']]
 # puntuni = icciso1[['puntos']]
 # resDer = derISO_Info(icciso,puntuni,nucleo = normal)
+}
 }

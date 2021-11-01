@@ -13,19 +13,20 @@
 #' Una columna por cada dimension. Se identifican con la legra *g* seguido del numero de la dimension.
 #' @export
 #' @examples
-#'
+#'\dontrun{
 #' # Genero el banco vacio
-#' bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
-#' m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
-#' bancoIT = genitmodelo(100,"2PL",m2pl,bancoIT)
+#' # bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
+#' # m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
+#' # bancoIT = genitmodelo(100,"2PL",m2pl,bancoIT)
 #' # Especifico que voy a extraer del banco completo, bancoTAI, 25 items de dos parametros
-#' diseno=matrix(c(25,"2PL"),ncol=2,byrow = FALSE)
-#' bancTeor = bancoTAI(bancoIT,diseno)
+#' # diseno=matrix(c(25,"2PL"),ncol=2,byrow = FALSE)
+#' # bancTeor = bancoTAI(bancoIT,diseno)
 #'# Genero las habilidades
-#' thetas=creathetas("Normal",n=1000,mean=0,sd=1)
-#' respu=GenResp(banco = bancTeor,thetas)
+#' # thetas=creathetas("Normal",n=1000,mean=0,sd=1)
+#' # respu=GenResp(banco = bancTeor,thetas)
 #' # Estimo las habilidades para una dimension
-#' respG = estFunG(resp = respu,rotacion = c('oblimin'),corr = c('tet'),ndims = 1)
+#' # respG = estFunG(resp = respu,rotacion = c('oblimin'),corr = c('tet'),ndims = 1)
+#' }
 
 
 

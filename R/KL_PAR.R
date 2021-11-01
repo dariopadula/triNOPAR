@@ -13,7 +13,9 @@
 #' Un vector con la funcion KL estimada en cada punto de la grilla.
 #' @export
 #' @examples
+#' \dontrun{
 #' # No correr
+#' }
 
 
 KL_PAR = function(nomItem,paramsMIRT,grillaEval,distTrans = qnorm) {
@@ -39,14 +41,4 @@ KL_PAR = function(nomItem,paramsMIRT,grillaEval,distTrans = qnorm) {
   return(KL)
 }
 
-### Caso no parametrico
-KL_NOPAR = function(iccNP,sepGrilla,entorno) {
-
-  ###### Calcula el KL
-  KL = sapply(1:length(iccNP),function(tt) {
-    funKL_int_NOPAR(iccNP,sepGrilla,entorno,jfijo = tt)
-  })
-
-  return(KL)
-}
 

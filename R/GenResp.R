@@ -8,7 +8,7 @@
 #' @return Retorna una matriz con tantas filas como habilidades (individuos) y tantas columnas como items haya en el banco.
 #' @export
 #' @examples
-#'
+#'\dontrun{
 #' # Genero el banco vacio
 #' bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
 #' m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
@@ -19,6 +19,7 @@
 #'# Genero las habilidades
 #' thetas=creathetas("Normal",n=1000,mean=0,sd=1)
 #' respu=GenResp(banco = bancTeor,thetas)
+#' }
 
 
 GenResp<-function(banco,thetas){

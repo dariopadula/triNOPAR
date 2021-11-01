@@ -9,9 +9,11 @@
 #' @return Retorna un vector con la funcion de informacion evaluada en los puntos de la grilla
 #' @export
 #' @examples
+#' \dontrun{
 #' a = 1; b = 0; c = 0.1
 #' grillaUni = grilla =seq(0,1,0.01)
 #' infor = parInfoFun(a,b,c,grillaUni,trnfFun = qnorm)
+#' }
 
 parInfoFun = function(a,b,c,grillaUni,trnfFun = qnorm) {
 ### Pasa de la grilla en 0-1 a la distribucion de los thetas

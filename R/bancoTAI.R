@@ -8,11 +8,13 @@
 #' @return Returna un sub banco de items muestreados del banco original.
 #' @export
 #' @examples
-#' bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
-#' m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
-#' bancoIT=genitmodelo(100,"2PL",m2pl,bancoIT)
-#' diseno=matrix(c(25,"2PL"),ncol=2,byrow = FALSE)
-#' bancTeor = bancoTAI(bancoIT,diseno)
+#' \dontrun{
+#' # bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
+#' # m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
+#' # bancoIT=genitmodelo(100,"2PL",m2pl,bancoIT)
+#' # diseno=matrix(c(25,"2PL"),ncol=2,byrow = FALSE)
+#' # bancTeor = bancoTAI(bancoIT,diseno)
+#' }
 
 
 bancoTAI<-function(banco,diseno){

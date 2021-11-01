@@ -29,7 +29,7 @@
 \usage{
 normal(x, h, th)
 
-epa(x)
+epa(x, h, th)
 
 acuepa(x)
 
@@ -90,9 +90,11 @@ Los nucleos multidimensionales son: Normal multiplicativo (multinorm), Nucleo Ep
 Normal multivariada (multinorm)
 }
 \examples{
+\dontrun{
 set.seed(1234)
 xeval = seq(0,1,0.01)
 h = 0.05
 th = runif(1000)
 res = normal(x = xeval,h = h,th = th)
+}
 }
