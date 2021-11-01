@@ -11,8 +11,10 @@
 #' @return Returna un sub banco de items muestreados del banco original.
 #' @export
 #' @examples
+#' \dontrun{
 #' # No correr
 #' #icciso1 = icciso(icc1,hd,theta,nt,puntosiso,nucleod)
+#' }
 
 
 icciso=function(icc1,hd,thetaiso,nt,puntosicc,nucleod){

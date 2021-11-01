@@ -15,11 +15,13 @@
 #' @return un vector de largo *x* con el resultado de la aplicacion del nucleo
 #' @export
 #' @examples
+#' \dontrun{
 #' set.seed(1234)
 #' xeval = seq(0,1,0.01)
 #' h = 0.05
 #' th = runif(1000)
 #' res = normal(x = xeval,h = h,th = th)
+#' }
 #'@rdname nucleosAll
 
 

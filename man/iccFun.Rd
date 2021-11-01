@@ -22,7 +22,9 @@ Retorna un vector con la funcion evaluada en los puntos de la grilla
 Para una grilla de puntos calcula la curva caracteristica del item ICC
 }
 \examples{
+\dontrun{
 a = 1; b = 0; c = 0.1
 grilla = dnorm(seq(0,1,0.01))
 p = iccFun(a,b,c,grilla)
+}
 }

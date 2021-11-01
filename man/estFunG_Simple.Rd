@@ -23,12 +23,13 @@ Funcion para generar las funcions gs que se usan como
 estadistico usando sumas simples o ponderadas sobre los items
 }
 \examples{
+\dontrun{
+# Ejemplo 1 dimension solo suma
+# itdim1=colnames(respu)[1:80]
+# itemsgs=list(dim1=itdim1)
+# pesos=list(dim1=rep(1,80))
+# respG=estFunG_Simple(respu,itemsgs,pesos)
 
-Ejemplo 1 dimension solo suma
-itdim1=colnames(respu)[1:80]
-itemsgs=list(dim1=itdim1)
-pesos=list(dim1=rep(1,80))
-respG=estFunG_Simple(respu,itemsgs,pesos)
 
 Ejemplo para dos dimensiones
 itdim1=colnames(respu)[1:50]
@@ -36,4 +37,5 @@ itdim2=colnames(respu)[45:80]
 itemsgs=list(dim1=itdim1,dim2=itdim2)
 pesos=list(dim1=runif(50),dim2=runif(36))
 respG=estFunG_Simple(respu,itemsgs,pesos)
+}
 }

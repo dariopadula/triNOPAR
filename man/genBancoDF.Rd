@@ -22,5 +22,7 @@ Genera un data frame vacio con un determinado numero de calumnas fijas de charac
 conjunto de columnas numericas
 }
 \examples{
+\dontrun{
 bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
+}
 }

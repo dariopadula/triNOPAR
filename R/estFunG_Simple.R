@@ -8,12 +8,13 @@
 #' Una columna por cada dimension. Se identifican con la legra *g* seguido del numero de la dimension.
 #' @export
 #' @examples
+#'\dontrun{
+#' # Ejemplo 1 dimension solo suma
+#' # itdim1=colnames(respu)[1:80]
+#' # itemsgs=list(dim1=itdim1)
+#' # pesos=list(dim1=rep(1,80))
+#' # respG=estFunG_Simple(respu,itemsgs,pesos)
 #'
-#' Ejemplo 1 dimension solo suma
-#' itdim1=colnames(respu)[1:80]
-#' itemsgs=list(dim1=itdim1)
-#' pesos=list(dim1=rep(1,80))
-#' respG=estFunG_Simple(respu,itemsgs,pesos)
 #'
 #' Ejemplo para dos dimensiones
 #' itdim1=colnames(respu)[1:50]
@@ -21,6 +22,7 @@
 #' itemsgs=list(dim1=itdim1,dim2=itdim2)
 #' pesos=list(dim1=runif(50),dim2=runif(36))
 #' respG=estFunG_Simple(respu,itemsgs,pesos)
+#' }
 
 estFunG_Simple = function(resp,grupos,pesos){
   ndims=length(grupos)

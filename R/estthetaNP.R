@@ -15,7 +15,7 @@
 #' pcg (percentiles del score g sin empates) y dtg (es la transformacion aplicando la funcion Dth a pcg).
 #' @export
 #' @examples
-#'
+#'\dontrun{
 #' # Genero el banco vacio
 #' bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
 #' m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
@@ -30,6 +30,7 @@
 #' respG = estFunG(resp = respu,rotacion = c('oblimin'),corr = c('tet'),ndims = 1)
 #' # Estimo los thetas de forma no parametrica y usando la transformacion a la distribucion normal
 #' thetaest = estthetaNP(scores = respG,Dth = qnorm)
+#' }
 
 
 estthetaNP = function(scores,Dth = qnorm,...) {

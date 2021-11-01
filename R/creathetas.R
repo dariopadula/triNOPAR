@@ -8,7 +8,9 @@
 #' @return Un vector de habilidades de largo "n" donde el parametro n se define dentro de "..."
 #' @export
 #' @examples
-#' thetas=creathetas("Normal",n=1000,mean=0,sd=1)
+#' \dontrun{
+#' # thetas=creathetas("Normal",n=1000,mean=0,sd=1)
+#' }
 
 
 creathetas<-function(distrth,...){

@@ -16,22 +16,23 @@
 #' @export
 #' @examples
 #'
+#'\dontrun{
 #' # Genero el banco vacio
-#' bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
-#' m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
-#' bancoIT = genitmodelo(100,"2PL",m2pl,bancoIT)
+#' # bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
+#' # m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
+#' # bancoIT = genitmodelo(100,"2PL",m2pl,bancoIT)
 #' # Especifico que voy a extraer del banco completo, bancoTAI, 25 items de dos parametros
-#' diseno=matrix(c(25,"2PL"),ncol=2,byrow = FALSE)
-#' bancTeor = bancoTAI(bancoIT,diseno)
+#' # diseno=matrix(c(25,"2PL"),ncol=2,byrow = FALSE)
+#' # bancTeor = bancoTAI(bancoIT,diseno)
 #'# Genero las habilidades
-#' thetas=creathetas("Normal",n=1000,mean=0,sd=1)
-#' respu=GenResp(banco = bancTeor,thetas)
+#' # thetas=creathetas("Normal",n=1000,mean=0,sd=1)
+#' # respu=GenResp(banco = bancTeor,thetas)
 #' ### Estima los parametros asumiendo unidimensionalidad y que los items son todos 2PL
-#' modelo=1
-#' tipit<-c(rep("2PL",25)) # En este caso podria se solo tipit = "2PL"
-#' paramsEst = estpar(respu,modelo,tipit)
+#' # modelo=1
+#' # tipit<-c(rep("2PL",25)) # En este caso podria se solo tipit = "2PL"
+#' # paramsEst = estpar(respu,modelo,tipit)
+#' }
 
-#Modificacion Mario 7 de octubre habilidades
 
 estpar<-function(datos,modelo,tipit){
   estima = mirt::mirt(datos,model = modelo,itemtype=tipit,SE = TRUE)

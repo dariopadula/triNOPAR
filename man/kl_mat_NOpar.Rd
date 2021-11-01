@@ -24,6 +24,8 @@ Dado una secuencia de items estimados de forma NO parametrica (puede ser la isot
 estima la funcion KL para cada uno.
 }
 \examples{
+\dontrun{
 # No correr
 # KL_MAT_NP = kl_mat_NOpar(iccNP_mat,sepGrilla,entorno)
+}
 }
