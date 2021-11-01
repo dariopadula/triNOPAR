@@ -34,7 +34,7 @@ normal=function(x,h,th){
 #'@rdname nucleosAll
 #' @export
 #'
-epa=function(x){
+epa=function(x,h,th){
   res=numeric(length(x))
   res=(3/4)*(1-((x-th)/h)^2)*(abs(((x-th)/h))<=1)
   return(list(res=res))

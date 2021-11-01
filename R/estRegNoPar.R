@@ -1,7 +1,7 @@
 #' Estima ICC usando regresion NO parametrica
 #'
 #' Esta funcion estima las curvas caracteristicas de los items usando regresion no parametrica tanto para items
-#' unidimensionales como multidimensionales.
+#' unidimensionales como multidimensionales. Utiliza la libreria np
 #'
 #'
 #' @param items Puede ser un vector de strings con los nombres de los items o las posiciones.
@@ -44,14 +44,15 @@
 #' # ICCNP_todos = estRegNoPar(items = c(1:25),h = 0.01,th_use = 'pcg',test = thetaest,puntos = grilla,nucleo=normal,sigma = 1)
 
 
-estRegNoPar = function(items,h = 0.2,th_use = 'pcg',test,puntos,nucleo=normal,sigma){
+estRegNoPar = function(items,h,th_use = 'pcg',test,puntos,nucleo=normal,sigma,nucleodes="gaussian"){
 
   varsTh = colnames(test)[grep(th_use,colnames(test))]
   dimension = length(varsTh)
 
   th=test[,varsTh]
 
-  if(dimension==1){
+
+    if(dimension==1){
     w = do.call(cbind,sapply(puntos,nucleo,h,th))
   }else{
 
@@ -74,6 +75,5 @@ estRegNoPar = function(items,h = 0.2,th_use = 'pcg',test,puntos,nucleo=normal,si
 
   pesos=prop.table(w,margin=2)
   CCInp = t(pesos)%*%as.matrix(test[,items])
-
   return(list(NPICC=CCInp, pesos=pesos,puntos = puntos))
 }

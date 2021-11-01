@@ -31,13 +31,13 @@
 #' tipit<-c(rep("2PL",25)) # En este caso podria se solo tipit = "2PL"
 #' paramsEst = estpar(respu,modelo,tipit)
 
-
+#Modificacion Mario 7 de octubre habilidades
 
 estpar<-function(datos,modelo,tipit){
   estima = mirt::mirt(datos,model = modelo,itemtype=tipit,SE = TRUE)
   conv= c(mirt::extract.mirt(estima, what="converged") ,mirt::extract.mirt(estima, what="secondordertest") )
   para= mirt::coef(estima, simplify = TRUE, IRTpars = TRUE)
-
-  sal = list(parametros = para,convergencia = conv)
+  hab=mirt::fscores(estima, method = 'ML', full.scores=TRUE,full.scores.SE = F)
+  sal =list(parametros = para,habilidades=hab,convergencia = conv)
   return(sal)
 }
