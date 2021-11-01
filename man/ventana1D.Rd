@@ -7,7 +7,7 @@
 ventana1D(
   items,
   th_use = "pcg",
-  test,
+  test = NULL,
   nucleodes = "gaussian",
   muestra = "TODO"
 )
@@ -48,7 +48,6 @@ respu=GenResp(banco = bancTeor,thetas)
 respG = estFunG(resp = respu,rotacion = c('oblimin'),corr = c('tet'),ndims = 1)
 # Estimo los thetas de forma no parametrica y usando la transformacion a la distribucion normal
 thetaest = estthetaNP(scores = respG,Dth = qnorm)
-
 # Estima la ventana para un item especifico
 h=ventana1D(items = 1,th_use = 'dtg',test = thetaest,nucleodes="gaussian",1000)
 }

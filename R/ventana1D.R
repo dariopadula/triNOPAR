@@ -34,7 +34,7 @@
 #' h=ventana1D(items = 1,th_use = 'dtg',test = thetaest,nucleodes="gaussian",1000)
 #' }
 
-ventana1D = function(items,th_use = 'pcg',test,nucleodes="gaussian",muestra="TODO"){
+ventana1D = function(items,th_use = 'pcg',test=NULL,nucleodes="gaussian",muestra="TODO"){
 
 varsTh = colnames(test)[grep(th_use,colnames(test))]
 dimension = length(varsTh)
