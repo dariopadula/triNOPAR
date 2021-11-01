@@ -8,7 +8,7 @@
 #' @param grilla grilla de puntos de habilidad para estimar el RMSE y el sesgo local
 #' @return Returna una lista con:
 #' * **RMGEN**: valores del sego y RMSE para la simulacion ingresada
-#' * **RMBIATH**: estimaciones del RMSE y el sego para una grilla de valores de $\theta$
+#' * **RMBIATH**: estimaciones del RMSE y el sego para una grilla de valores de theta
 #' @export
 #' @examples
 #' # No correr

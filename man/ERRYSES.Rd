@@ -16,7 +16,7 @@ que seria la salida de la funcion TAIgeneric.}
 Returna una lista con:
 \itemize{
 \item \strong{RMGEN}: valores del sego y RMSE para la simulacion ingresada
-\item \strong{RMBIATH}: estimaciones del RMSE y el sego para una grilla de valores de $\theta$
+\item \strong{RMBIATH}: estimaciones del RMSE y el sego para una grilla de valores de theta
 }
 }
 \description{
