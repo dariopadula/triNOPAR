@@ -6,12 +6,13 @@
 \usage{
 estRegNoPar(
   items,
-  h = 0.2,
+  h,
   th_use = "pcg",
   test,
   puntos,
   nucleo = normal,
-  sigma
+  sigma,
+  nucleodes = "gaussian"
 )
 }
 \arguments{
@@ -43,7 +44,7 @@ Una lista donde con:
 }
 \description{
 Esta funcion estima las curvas caracteristicas de los items usando regresion no parametrica tanto para items
-unidimensionales como multidimensionales.
+unidimensionales como multidimensionales. Utiliza la libreria np
 }
 \examples{
 

@@ -4,18 +4,18 @@
 \alias{icciso}
 \title{Funcion para estimar las curvas isotonas en dimension 1}
 \usage{
-icciso(icc1, hd, theta, nt, puntosiso, nucleod)
+icciso(icc1, hd, thetaiso, nt, puntosicc, nucleod)
 }
 \arguments{
-\item{icc1}{estimados de la ICC no parametrica icc1 y puntosiso deben tener la misma longuitudla y curva estimada en el intervalo \link{0,1}}
+\item{icc1}{estimados de la ICC no parametrica icc1 y puntosicc deben tener la misma longuitudla y curva estimada en el intervalo \link{0,1}}
 
-\item{hd}{ventad para estimacion de la densidad}
+\item{hd}{ventana para estimacion de la densidad}
 
-\item{theta}{vector donde se calculara la curva isotona}
+\item{thetaiso}{vector donde se calculara la curva isotona}
 
 \item{nt}{puntos en la grilla}
 
-\item{puntosiso}{indica los valores donde esta calculada la icc1}
+\item{puntosicc}{indica los valores donde esta calculada la icc1}
 
 \item{nucleod}{nucle a usar para estimar la densidad}
 }

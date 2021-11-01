@@ -29,7 +29,7 @@
 \usage{
 normal(x, h, th)
 
-epa(x)
+epa(x, h, th)
 
 acuepa(x)
 
