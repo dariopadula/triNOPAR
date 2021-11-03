@@ -11,7 +11,9 @@
 #' Un vector con la funcion KL estimada en cada thj.
 #' @export
 #' @examples
+#' \dontrun{
 #' # No correr
+#' }
 
 
 funKL_int_PAR <- function(arg,thj,a,b) {

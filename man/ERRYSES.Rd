@@ -23,6 +23,8 @@ Returna una lista con:
 Funcion para estimar el error y el sesgo de las estimaciones del TAI
 }
 \examples{
+\dontrun{
 # No correr
+}
 
 }

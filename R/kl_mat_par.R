@@ -14,7 +14,9 @@
 #' con las estimaciones del KL
 #' @export
 #' @examples
+#' \dontrun{
 #' # No correr
+#' }
 
 
 

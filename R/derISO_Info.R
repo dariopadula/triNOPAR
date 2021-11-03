@@ -13,10 +13,12 @@
 #' * Info: Funcion de informacion de la curva isotonica
 #' @export
 #' @examples
+#' \dontrun{
 #' # No correr
 #' # icciso = icciso1[['resfin']]
 #' # puntuni = icciso1[['puntos']]
 #' # resDer = derISO_Info(icciso,puntuni,nucleo = normal)
+#' }
 
 
 

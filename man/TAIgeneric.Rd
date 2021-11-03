@@ -50,6 +50,8 @@ el error cometido y el total de items aplicado.
 Funcion para simular la aplicacion de un TAI para items NO parametricos
 }
 \examples{
+\dontrun{
 # No correr
+}
 
 }

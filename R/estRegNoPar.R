@@ -22,6 +22,7 @@
 #' @export
 #' @examples
 #'
+#'\dontrun{
 #' # Genero el banco vacio
 #' bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
 #' m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
@@ -42,6 +43,8 @@
 #' # ICCNP = estRegNoPar(items = NumItem,h = 0.01,th_use = 'pcg',test = thetaest,puntos = grilla,nucleo=normal,sigma = 1)
 #' # Estima para un conjunto de items
 #' # ICCNP_todos = estRegNoPar(items = c(1:25),h = 0.01,th_use = 'pcg',test = thetaest,puntos = grilla,nucleo=normal,sigma = 1)
+#' }
+#'
 
 
 estRegNoPar = function(items,h,th_use = 'pcg',test,puntos,nucleo=normal,sigma,nucleodes="gaussian"){

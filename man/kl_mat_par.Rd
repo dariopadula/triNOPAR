@@ -22,5 +22,7 @@ con las estimaciones del KL
 Dado un na secuencia de items estimados de forma parametrica, estima la funcion KL para cada uno
 }
 \examples{
+\dontrun{
 # No correr
+}
 }

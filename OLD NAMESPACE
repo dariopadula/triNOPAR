@@ -37,7 +37,10 @@ export(funKL_int_NOPAR)
 export(funKL_int_PAR)
 export(genBancoDF)
 export(genitmodelo)
+<<<<<<< HEAD
+=======
 export(iccFun)
+>>>>>>> caf884f4cb87a8a233efc9d55be7cba106ef5e58
 export(icciso)
 export(kl_mat_NOpar)
 export(kl_mat_par)
@@ -46,5 +49,4 @@ export(normal)
 export(normmult)
 export(parInfoFun)
 export(trian)
-export(ventana1D)
 importFrom(magrittr,"%>%")

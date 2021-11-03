@@ -11,7 +11,9 @@
 #' @return un data frame vacio.
 #' @export
 #' @examples
+#' \dontrun{
 #' bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
+#' }
 
 
 genBancoDF = function(nomFijas = c('NombreIt','Modelo'),nparam = 15) {

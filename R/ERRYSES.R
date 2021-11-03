@@ -11,7 +11,9 @@
 #' * **RMBIATH**: estimaciones del RMSE y el sego para una grilla de valores de theta
 #' @export
 #' @examples
+#' \dontrun{
 #' # No correr
+#' }
 #'
 
 

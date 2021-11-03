@@ -20,5 +20,7 @@ Un vector con la funcion KL estimada en cada thj.
 Esta funcion estima es la que se integra en un entorno del punto para estimar KL
 }
 \examples{
+\dontrun{
 # No correr
+}
 }

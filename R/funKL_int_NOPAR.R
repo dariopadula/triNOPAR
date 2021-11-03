@@ -14,7 +14,9 @@
 #' Un vector con la funcion KL estimada en cada posicion *jfijo*.
 #' @export
 #' @examples
+#' \dontrun{
 #' # No correr
+#' }
 
 
 

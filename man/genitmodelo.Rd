@@ -25,7 +25,9 @@ El mismo data frame con los nombres de los items y los parametros agregados deba
 Genera el banco de items para diferentes modelos con sus respectivos parametros
 }
 \examples{
-bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
-m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
-bancoIT=genitmodelo(100,"2PL",m2pl,bancoIT)
+\dontrun{
+# bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
+# m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
+# bancoIT=genitmodelo(100,"2PL",m2pl,bancoIT)
+}
 }
