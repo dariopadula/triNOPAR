@@ -34,7 +34,8 @@
 #' h=ventana1D(items = 1,th_use = 'dtg',test = thetaest,nucleodes="gaussian",1000)
 #' }
 
-ventana1D = function(items,th_use = 'pcg',test,nucleodes="gaussian",muestra="TODO"){
+
+ventana1D = function(items,th_use = 'pcg',test=NULL,nucleodes="gaussian",muestra="TODO"){
 
 varsTh = colnames(test)[grep(th_use,colnames(test))]
 dimension = length(varsTh)
@@ -49,7 +50,8 @@ if(dimension==1){
     h=rep(NA,length(items))
     for(j in items){
       haux=npregbw(formula=test[,j]~th,ckertype=nucleodes)
-      h[j]=haux$bandwidth$x }
+      h[j]=haux$bandwidth$x
+      }
 }else {stop("Dimension mayor a 1")}
 
 
