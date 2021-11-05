@@ -33,6 +33,7 @@ Una vector con los anchos de ventana vantanas
 Esta funcion utiliza la libreria np
 }
 \examples{
+
 \dontrun{
 # Genero el banco vacio
 bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)

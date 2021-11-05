@@ -49,8 +49,11 @@ if(dimension==1){
     h=rep(NA,length(items))
     for(j in items){
       haux=npregbw(formula=test[,j]~th,ckertype=nucleodes)
-      h[j]=haux$bandwidth$x }
-}else {stop("Dimension mayor a 1")}
+      h[j]=haux$bandwidth$x
+      }
+} else {
+  stop("Dimension mayor a 1")
+}
 
 
 return(h)
