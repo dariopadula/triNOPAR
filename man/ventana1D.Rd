@@ -7,11 +7,7 @@
 ventana1D(
   items,
   th_use = "pcg",
-<<<<<<< HEAD
-  test,
-=======
   test = NULL,
->>>>>>> 9c6b2677dbbc5c868d036bfefe12c12dfbcabd62
   nucleodes = "gaussian",
   muestra = "TODO"
 )
@@ -37,11 +33,7 @@ Una vector con los anchos de ventana vantanas
 Esta funcion utiliza la libreria np
 }
 \examples{
-<<<<<<< HEAD
 \dontrun{
-=======
-
->>>>>>> 9c6b2677dbbc5c868d036bfefe12c12dfbcabd62
 # Genero el banco vacio
 bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
 m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
@@ -58,10 +50,6 @@ respG = estFunG(resp = respu,rotacion = c('oblimin'),corr = c('tet'),ndims = 1)
 thetaest = estthetaNP(scores = respG,Dth = qnorm)
 
 # Estima la ventana para un item especifico
-<<<<<<< HEAD
 h=ventana1D(items = 1,th_use = 'dtg',test = thetaest,nucleodes="gaussian",1000)
 }
-=======
-# h=ventana1D(items = 1,th_use = 'dtg',test = thetaest,nucleodes="gaussian",1000)
->>>>>>> 9c6b2677dbbc5c868d036bfefe12c12dfbcabd62
 }

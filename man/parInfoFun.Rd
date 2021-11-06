@@ -13,7 +13,7 @@ parInfoFun(a, b, c, grillaUni, trnfFun = qnorm)
 
 \item{c}{parametro de pseudo azar de la ICC}
 
-\item{grilla}{valores de theta donde se evalua la funcion}
+\item{grillaUni}{valores de theta donde se evalua la funcion}
 }
 \value{
 Retorna un vector con la funcion de informacion evaluada en los puntos de la grilla
