@@ -207,17 +207,17 @@ colnames(infoFunIso) = colnames(icciso_mat)[trials]
 #################################################
 ##### Calcula la funcion KL para los items parametris los NP y lo NPiso
 ## Parametrico
-
-
 KLFunPar = kl_mat_par(paramsMIRT = parEst[trials,],
                       grillaEval = thetaiso,
                       distTrans = qnorm)
 
 colnames(KLFunPar) = rownames(parEst)[trials]
-
+##############################
 ### ICC no par
-
 KLFunNoPar = kl_mat_NOpar(iccNP_mat = iccnp_mat[,trials],sepGrilla = 0.001,entorno = 0.1)
 
+##############################
+### ICC no par isotonica
+KLFunNoParIso = kl_mat_NOpar(iccNP_mat = icciso_mat[,trials],sepGrilla = 0.001,entorno = 0.1)
 
 
