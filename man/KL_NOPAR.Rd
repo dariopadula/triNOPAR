@@ -20,5 +20,7 @@ Un vector con la funcion KL estimada en cada punto de la grilla.
 Esta funcion estima la funcion de KL para para una ICC estimada de forma NO parámetrica en una grilla d epuntos
 }
 \examples{
+\dontrun{
 # No correr
+}
 }

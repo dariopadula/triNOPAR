@@ -26,6 +26,8 @@ Returna un sub banco de items muestreados del banco original.
 Funcion para estimar las curvas isotonas en dimension 1
 }
 \examples{
+\dontrun{
 # No correr
 #icciso1 = icciso(icc1,hd,theta,nt,puntosiso,nucleod)
+}
 }

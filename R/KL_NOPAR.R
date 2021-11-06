@@ -13,7 +13,9 @@
 #' Un vector con la funcion KL estimada en cada punto de la grilla.
 #' @export
 #' @examples
+#' \dontrun{
 #' # No correr
+#' }
 
 
 KL_NOPAR = function(iccNP,sepGrilla,entorno) {

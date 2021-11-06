@@ -2,7 +2,7 @@
 #'
 #'
 library(devtools)
-library(np)
+# library(np)
 #'libary(here)
 load_all()
 #'library(dplyr)
@@ -119,7 +119,8 @@ points(thepl,Prob1,col="red")
 
 hdi= 0.9*length(ICCNPT$NPICC)^(-1/5)*min(sd(ICCNPT$NPICC),(quantile(ICCNPT$NPICC,prob=0.75)-quantile(ICCNPT$NPICC,prob=0.25))/1.364)
 
-ISINPT=icciso(icc1=ICCNPT$NPICC,hd=hdi,thetaiso=seq(0,1,0.001),nt=1000,puntosicc=pnorm(ICCNPT$puntos),nucleod=epa)
+
+ISINPT=icciso(icc1=ICCNPT$NPICC,hd=hdi,thetaiso=seq(0,1,0.001),nt=200,puntosicc=pnorm(ICCNPT$puntos),nucleod=epa)
 
 
 
@@ -128,7 +129,7 @@ thepl=qnorm(seq(0,1,0.001))
 plot(thepl,ICCNPU$NPICC,col="blue",xlim=c(-4,4),ylim=c(0,1))
 Prob1 <- c + (1 - c) /(1 + exp(-D * a * (thepl - b)))
 points(thepl,Prob1,col="red")
-plot(thepl,ISINPT$resfin)
+points(thepl,ISINPT$resfin,col = 'orange')
 
 #A mano
 

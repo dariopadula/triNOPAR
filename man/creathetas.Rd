@@ -19,5 +19,7 @@ Dado un banco de items, esta funcion extrae items generados con distintos modelo
 determina en la matriz diseno.
 }
 \examples{
-thetas=creathetas("Normal",n=1000,mean=0,sd=1)
+\dontrun{
+# thetas=creathetas("Normal",n=1000,mean=0,sd=1)
+}
 }

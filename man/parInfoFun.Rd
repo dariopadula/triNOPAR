@@ -22,7 +22,9 @@ Retorna un vector con la funcion de informacion evaluada en los puntos de la gri
 Para una grilla de puntos en el intervalo (0,1) calcula la funcion de informacion del item
 }
 \examples{
+\dontrun{
 a = 1; b = 0; c = 0.1
 grillaUni = grilla =seq(0,1,0.01)
 infor = parInfoFun(a,b,c,grillaUni,trnfFun = qnorm)
+}
 }

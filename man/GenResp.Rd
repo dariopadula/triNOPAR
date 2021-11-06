@@ -19,7 +19,7 @@ Para un banco de items parametrico simula una matriz de ceros (respuesta incorre
 valores del vector theta.
 }
 \examples{
-
+\dontrun{
 # Genero el banco vacio
 bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
 m2pl=matrix(c(0.2,1,-3,3),byrow = TRUE,ncol=2,nrow=2)
@@ -30,4 +30,5 @@ bancTeor = bancoTAI(bancoIT,diseno)
 # Genero las habilidades
 thetas=creathetas("Normal",n=1000,mean=0,sd=1)
 respu=GenResp(banco = bancTeor,thetas)
+}
 }

@@ -24,7 +24,9 @@
 #' el error cometido y el total de items aplicado.
 #' @export
 #' @examples
+#' \dontrun{
 #' # No correr
+#' }
 #'
 
 

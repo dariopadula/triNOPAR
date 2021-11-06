@@ -16,8 +16,10 @@
 #' con las estimaciones del KL
 #' @export
 #' @examples
+#' \dontrun{
 #' # No correr
 #' # KL_MAT_NP = kl_mat_NOpar(iccNP_mat,sepGrilla,entorno)
+#' }
 
 
 

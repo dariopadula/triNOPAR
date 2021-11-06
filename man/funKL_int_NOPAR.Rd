@@ -23,5 +23,7 @@ Esta funcion define el integrando para estimar la funcion de KL  para una ICC es
 o la curva isotonica en un punto fijo de la grilla
 }
 \examples{
+\dontrun{
 # No correr
+}
 }
