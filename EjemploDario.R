@@ -81,11 +81,13 @@ unido=cbind(thetas,thetaest[,"dtg1"],difeth2)
 library(parallel)
 library(data.table)
 
-puntosNP = seq(-3,3,0.01)
+# puntosNP = seq(-3,3,0.01)
+puntosNP = seq(0,1,0.001)
+th_use = 'pcg'
 
 funEstNoPar = function(ii) {
-  hT=ventana1D(items = ii,th_use = 'dtg',test = thetaest,nucleodes="gaussian",muestra=2000)
-  iccnp=estRegNoPar(items = ii,h=last(hT),th_use = 'dtg',
+  hT=ventana1D(items = ii,th_use = th_use,test = thetaest,nucleodes="gaussian",muestra=2000)
+  iccnp=estRegNoPar(items = ii,h=last(hT),th_use = th_use,
                     test=thetaest,puntos=puntosNP,
                     nucleo=normal,sigma=1)
 
@@ -98,7 +100,7 @@ trials = 1:200
 
 
 cl <- makeCluster(detectCores())
-clusterExport(cl, c("thetaest","puntosNP","ventana1D","estRegNoPar","normal"))
+clusterExport(cl, c("thetaest","puntosNP","th_use","ventana1D","estRegNoPar","normal"))
 clusterEvalQ(cl, {
   library(tidyverse)
   library(np)})
@@ -122,7 +124,9 @@ colnames(iccnp_mat) = names(thetaest)[trials]
 ############################################
 ##### Estima curvas np isotonicas de forma paralela
 
-puntosicc = pnorm(puntosNP)
+puntosicc = puntosNP
+if(sum(abs(puntosNP) > 1) > 0) puntosicc = pnorm(puntosNP)
+
 thetaiso = seq(0,1,0.001)
 
 funEstNoParIso = function(ii) {
@@ -203,17 +207,17 @@ colnames(infoFunIso) = colnames(icciso_mat)[trials]
 #################################################
 ##### Calcula la funcion KL para los items parametris los NP y lo NPiso
 ## Parametrico
-
-
 KLFunPar = kl_mat_par(paramsMIRT = parEst[trials,],
                       grillaEval = thetaiso,
                       distTrans = qnorm)
 
 colnames(KLFunPar) = rownames(parEst)[trials]
-
+##############################
 ### ICC no par
+KLFunNoPar = kl_mat_NOpar(iccNP_mat = iccnp_mat[,trials],sepGrilla = 0.001,entorno = 0.1)
 
-KLFunNoPar = kl_mat_NOpar(iccNP_mat = iccnp_mat[,trials],sepGrilla,entorno)
-
+##############################
+### ICC no par isotonica
+KLFunNoParIso = kl_mat_NOpar(iccNP_mat = icciso_mat[,trials],sepGrilla = 0.001,entorno = 0.1)
 
 
