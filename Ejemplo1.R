@@ -139,3 +139,7 @@ thetaiso=seq(0,1,0.001)
 nt=1000
 puntosicc=pnorm(ICCNPT$puntos)
 nucleod=epa
+
+#######################
+#### yo dario pongo esto
+
