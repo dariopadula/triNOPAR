@@ -47,10 +47,12 @@ if(muestra!="TODO"){
 
 
 if(dimension==1){
-    h=rep(NA,length(items))
+  h = NULL
+    # h=rep(NA,length(items))
     for(j in items){
       haux=npregbw(formula=test[,j]~th,ckertype=nucleodes)
-      h[j]=haux$bandwidth$x
+      # h[j]=haux$bandwidth$x
+      h = c(h,haux$bandwidth$x)
       }
 }else {stop("Dimension mayor a 1")}
 
