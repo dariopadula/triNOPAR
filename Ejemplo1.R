@@ -143,4 +143,9 @@ puntosicc=pnorm(ICCNPT$puntos)
 nucleod=epa
 
 
+
 thepl=qunif(300)
+
+#######################
+#### yo dario pongo esto
+
