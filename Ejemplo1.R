@@ -134,7 +134,7 @@ points(thepl,ISINPT$resfin,col = 'orange')
 #A mano
 
 icc1=ICCNPT$NPICC
-hd=0.4
+hd=hdi
 thetaiso=seq(0,1,0.001)
 nt=1000
 puntosicc=pnorm(ICCNPT$puntos)
