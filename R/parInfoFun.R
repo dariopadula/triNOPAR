@@ -2,7 +2,7 @@
 #'
 #'
 #'
-#' @param grilla valores de theta donde se evalua la funcion
+#' @param grillaUni valores de theta donde se evalua la funcion
 #' @param a parametro de discriminacion del la ICC
 #' @param b parametro de dificultad del la ICC
 #' @param c parametro de pseudo azar de la ICC

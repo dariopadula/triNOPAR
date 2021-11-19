@@ -32,7 +32,7 @@ icciso=function(icc1,hd,thetaiso,nt,puntosicc,nucleod){
   fes = sapply(1:length(t),function(ii) {
     alu = sapply(ifi1, function(yy) {
       integrand=function(x){nucleod((yy-x)/hd,1,0)$res}
-      resAlu = integrate(integrand,-Inf,t[ii],subdivisions=10,rel.tol = 0.03,abs.tol =0.05,stop.on.error = FALSE)[[1]]
+      resAlu = integrate(integrand,0,t[ii],subdivisions=10,rel.tol = 0.03,abs.tol =0.05,stop.on.error = FALSE)[[1]]
     })
     resFes = (1/(length(ifi1)*hd))*sum(alu)
   })
