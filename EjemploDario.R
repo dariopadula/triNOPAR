@@ -127,7 +127,7 @@ colnames(iccnp_mat) = names(thetaest)[trials]
 puntosicc = puntosNP
 if(sum(abs(puntosNP) > 1) > 0) puntosicc = pnorm(puntosNP)
 
-thetaiso = seq(0,1,0.001)
+thetaiso = puntosNP
 
 funEstNoParIso = function(ii) {
 
@@ -144,7 +144,7 @@ funEstNoParIso = function(ii) {
 
 
 cl <- makeCluster(detectCores())
-clusterExport(cl, c("iccnp_mat","puntosicc","icciso","normal","epa"))
+clusterExport(cl, c("iccnp_mat","puntosicc","icciso","normal","epa","thetaiso"))
 clusterEvalQ(cl, {
   library(tidyverse)
   library(np)})
@@ -170,7 +170,7 @@ colnames(icciso_mat) = names(iccnp_mat)
 ####### Estima la funcion de informacion para las curvas parametricas y las isotonicas
 
 #### Items parametricos
-parEstc = paramsEst[[1]]$items
+parEst = paramsEst[[1]]$items
 colnames(parEst) = c('a','b','c','d')
 
 infoFunPar = do.call(cbind,
@@ -215,9 +215,40 @@ colnames(KLFunPar) = rownames(parEst)[trials]
 ##############################
 ### ICC no par
 KLFunNoPar = kl_mat_NOpar(iccNP_mat = iccnp_mat[,trials],sepGrilla = 0.001,entorno = 0.1)
-
 ##############################
 ### ICC no par isotonica
 KLFunNoParIso = kl_mat_NOpar(iccNP_mat = icciso_mat[,trials],sepGrilla = 0.001,entorno = 0.1)
+
+
+####################################################################
+####### INSUMOS PARA EL TAI (prueba)
+
+## Parametros verdaderos (adecuo el df para que se interprete bien en la funcion)
+parametros = bancTeor[,c('NombreIt','Modelo',paste0('P',1:3))]
+rownames(parametros) = apply(parametros[,c('NombreIt','Modelo')],1,function(xx) paste(xx,collapse = ''))
+parametros$P3 = ifelse(is.na(parametros$P3),0,parametros$P3)
+
+
+
+sujtai = rnorm(100)
+epsilon = 0.01
+minit = 10
+maxit = 20
+curvaNOPAR = NULL
+
+res = TAIgeneric(sujtai,
+                       epsilon,
+                       minit,
+                       maxit,
+                       curvaNOPAR,
+                       parametros,
+                       parEst,
+                       itemsSelec = c('InfoFun'),
+                       matrizSelect = infoFunPar,
+                       seqTheta = puntosNP)
+
+###################################################
+#### Calculo de los errores
+errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
 
 
