@@ -11,7 +11,8 @@ TAIgeneric(
   maxit,
   curvaNOPAR,
   parametros,
-  itemsSelec = c("InfoIso", "KL", "ESH", "Random"),
+  parEst,
+  itemsSelec = c("InfoFun", "KL", "ESH", "Random"),
   matrizSelect = MINOPARAUX,
   seqTheta
 )
@@ -29,9 +30,12 @@ TAIgeneric(
 
 \item{parametros}{parametros verdaderos de los items}
 
+\item{parEst}{Data frame con los parametros estimados de los items. Las filas tienes que ser nombradas
+con los nombres de los items.}
+
 \item{itemsSelec}{Metodo utilizado para seleccionar los items:
 \itemize{
-\item \emph{InfoIso}: pseudo informacion
+\item \emph{InfoFun}: pseudo informacion
 \item \emph{KL}: Kullback Leiber
 \item \emph{ESH}: Esperanza de la entropia de shannon
 \item \emph{random}: Seleccion aleatoria
