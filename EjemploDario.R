@@ -251,5 +251,6 @@ res = TAIgeneric(sujtai,
 #### Calculo de los errores
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
 
-
+######################
+#### Cambio dario
 
