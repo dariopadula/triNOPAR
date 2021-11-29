@@ -16,7 +16,9 @@ load_all()
 #Esto se debe inicializar una sola vez a menos que se quiera cambiar
 #el banco completo
 
+
 bancoITEMS<- genBancoDF(nparam=15)
+
 
 #Generamos un banco de 300 items
 set.seed(12345)
@@ -134,11 +136,15 @@ points(thepl,ISINPT$resfin,col = 'orange')
 #A mano
 
 icc1=ICCNPT$NPICC
-hd=0.4
+hd=hdi
 thetaiso=seq(0,1,0.001)
 nt=1000
 puntosicc=pnorm(ICCNPT$puntos)
 nucleod=epa
+
+
+
+thepl=qunif(300)
 
 #######################
 #### yo dario pongo esto
