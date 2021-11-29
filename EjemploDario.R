@@ -252,3 +252,8 @@ res = TAIgeneric(sujtai,
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
 
 
+#######################
+#### Agrego esto
+
+########
+####
