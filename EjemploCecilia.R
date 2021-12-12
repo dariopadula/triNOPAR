@@ -5,7 +5,7 @@ library(devtools)
 # library(np)
 #'libary(here)
 load_all()
-#'library(dplyr)
+library(dplyr)
 #'library(mirt)
 #'library(psych)
 #'library(MASS)
@@ -91,7 +91,7 @@ funEstNoPar = function(ii) {
   hT=ventana1D(items = ii,th_use = th_use,test = thetaest,nucleodes="gaussian",muestra=2000)
   iccnp=estRegNoPar(items = ii,h=last(hT),th_use = th_use,
                     test=thetaest,puntos=puntosNP,
-                    nucleo=normal,sigma=1)
+                    nucleo=epa,sigma=1)
 
   return(as.vector(iccnp[["NPICC"]]))
 }
@@ -101,7 +101,7 @@ funEstNoPar = function(ii) {
 trials = 1:200
 
 cl <- makeCluster(detectCores())
-clusterExport(cl, c("thetaest","puntosNP","th_use","ventana1D","estRegNoPar","normal"))
+clusterExport(cl, c("thetaest","puntosNP","th_use","ventana1D","estRegNoPar","normal", "epa"))
 clusterEvalQ(cl, {
   library(tidyverse)
   library(np)})
@@ -123,6 +123,9 @@ colnames(iccnp_mat) = names(thetaest)[trials]
 #Graficos de ICCNP
 thepl=qnorm(seq(0,1,0.001))
 #thepl=ICCNPT$puntos
+a<-filter(parametros, NombreIt=="IT488")[,"P1"]
+b<-filter(parametros, NombreIt=="IT488")[,"P2"]
+c<-filter(parametros, NombreIt=="IT488")[,"P3"]
 plot(thepl,iccnp_mat[,"IT4881PL"],col="blue",xlim=c(-4,4),ylim=c(0,1))
 Prob1 <- c + (1 - c) /(1 + exp(-D * a * (thepl - b)))
 points(thepl,Prob1,col="red")
@@ -216,6 +219,7 @@ plot(thepl,icciso_mat[,"IT4881PL"],col="blue",xlim=c(-4,4),ylim=c(0,1))
 Prob1 <- c + (1 - c) /(1 + exp(-D * a * (thepl - b)))
 points(thepl,Prob1,col="red")
 
+
 #################################################
 #################################################
 #################################################
@@ -248,11 +252,13 @@ parametros$P3 = ifelse(is.na(parametros$P3),0,parametros$P3)
 
 
 #sujtai = rnorm(100) (ya teniamos definidos los reales con creatheta)
+set.seed(2021)
 sujtai = sample(thetas, 100)
 epsilon = 0.01
 minit = 10
 maxit = 20
 curvaNOPAR = NULL#si es nulo juega lo parametrico
+
 ##Simulacion con ICC parametricas
 res1 = TAIgeneric(sujtai,
                        epsilon,
@@ -284,19 +290,9 @@ res3=TAIgeneric(sujtai,
                 itemsSelec = c('Random'),
                 #matrizSelect = infoFunPar,
                 seqTheta = puntosNP)
-res4=TAIgeneric(sujtai,
-                epsilon,
-                minit,
-                maxit,
-                curvaNOPAR,
-                parametros,
-                parEst,
-                itemsSelec = c('ESH'),
-                #matrizSelect = infoFunPar,
-                seqTheta = puntosNP)
 
-##Simulación con ICCNP
-res5=TAIgeneric(sujtai,
+##Simulación con ICC-NP
+res4=TAIgeneric(sujtai,
                 epsilon,
                 minit,
                 maxit,
@@ -304,10 +300,34 @@ res5=TAIgeneric(sujtai,
                 parametros,
                 parEst,
                 itemsSelec = c('KL'),
-                matrizSelect = KLFunNoParIso,
+                matrizSelect = KLFunNoPar,
+                seqTheta = puntosNP)
+
+res5=TAIgeneric(sujtai,
+                epsilon,
+                minit,
+                maxit,
+                curvaNOPAR = iccnp_mat,
+                parametros,
+                parEst = NULL,
+                itemsSelec = c('ESH'),
+                #matrizSelect = infoFunPar,
                 seqTheta = puntosNP)
 
 res6=TAIgeneric(sujtai,
+                epsilon,
+                minit,
+                maxit,
+                curvaNOPAR = iccnp_mat,
+                parametros,
+                parEst,
+                itemsSelec = c('Random'),
+                #matrizSelect = KLFunNoPar,
+                seqTheta = puntosNP)
+
+##Simulación con ICCISO
+
+res7=TAIgeneric(sujtai,
                 epsilon,
                 minit,
                 maxit,
@@ -318,7 +338,7 @@ res6=TAIgeneric(sujtai,
                 matrizSelect = infoFunIso,
                 seqTheta = puntosNP)
 
-res7=TAIgeneric(sujtai,
+res8=TAIgeneric(sujtai,
                 epsilon,
                 minit,
                 maxit,
@@ -329,9 +349,37 @@ res7=TAIgeneric(sujtai,
                 matrizSelect = KLFunNoParIso,
                 seqTheta = puntosNP)
 
-rm(curvaNOPAR)
 
-bruncheando_2
+res9=TAIgeneric(sujtai,
+                epsilon,
+                minit,
+                maxit,
+                curvaNOPAR = icciso_mat,
+                parametros,
+                parEst,
+                itemsSelec = c('ESH'),
+                #matrizSelect = KLFunNoParIso,
+                seqTheta = puntosNP)
+
+res10=TAIgeneric(sujtai,
+                 epsilon,
+                 minit,
+                 maxit,
+                 curvaNOPAR = icciso_mat,
+                 parametros,
+                 parEst,
+                 itemsSelec = c('Random'),
+                 #matrizSelect = KLFunNoParIso,
+                 seqTheta = puntosNP)
+
+
+
+
+
+
+
+
+
 ###################################################
 #### Calculo de los errores
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)

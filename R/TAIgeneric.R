@@ -78,10 +78,12 @@ TAIgeneric <- function(sujtai,
       if(metodoSel %in% c('ESH')) {
         veroPrev = vero
         ## Transforma verosimilitud en una matriz con la dimension de curvaNOPAR
-        veroPrev = matrix(veroPrev,ncol = 1,nrow = nrow(curvaNOPAR),byrow = F)
+        #veroPrev = matrix(veroPrev,ncol = 1,nrow = nrow(curvaNOPAR),byrow = F)
+        veroPrev = matrix(veroPrev,ncol = ncol(curvaNOPAR),nrow = nrow(curvaNOPAR),byrow = F)
         ## Normaliza para obtener el pi_n (Ecuacion 1)
-        pi_n = veroPrev/sum(veroPrev)
-
+        #pi_n = veroPrev/sum(veroPrev)
+        #pi_n = matrix(pi_n, nrow(pi_n), ncol(curvaNOPAR), byrow = F)
+        pi_n = veroPrev/matrix(colSums(veroPrev),ncol = ncol(veroPrev),nrow = nrow(veroPrev),byrow = T)
         ## Numerador de la ecuacion (2)
         pi_yj1_num = curvaNOPAR*pi_n
         ## Denominador de la ecuacion (2) (Es tambien lo que aparece en la ecuacion (3)) se devería de cancelar
