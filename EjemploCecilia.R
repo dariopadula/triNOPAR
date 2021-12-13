@@ -399,4 +399,4 @@ errYses7[["raiz"]]
 errYses8 = ERRYSES(simData = res8,grilla = seq(1:100)/100)#ISO-MI***
 errYses8[["raiz"]]
 
-probando
+probando una vez mas
