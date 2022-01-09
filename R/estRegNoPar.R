@@ -47,7 +47,8 @@
 #'
 
 
-estRegNoPar = function(items,h,th_use = 'pcg',test,puntos,nucleo=normal,sigma,nucleodes="gaussian"){
+estRegNoPar = function(items,h,th_use = 'pcg',test,puntos,nucleo=normal,sigma,
+                       nucleodes="gaussian"){
 
   varsTh = colnames(test)[grep(th_use,colnames(test))]
   dimension = length(varsTh)

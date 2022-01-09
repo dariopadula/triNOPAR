@@ -2,7 +2,11 @@
 #'
 #'
 library(devtools)
-# library(np)
+library(parallel)
+library(data.table)
+library(tidyverse)
+library(np)
+
 #'libary(here)
 load_all()
 #'library(dplyr)
@@ -76,13 +80,12 @@ unido=cbind(thetas,thetaest[,"dtg1"],difeth2)
 
 
 
-#Estimacion NP don la ventana elegida de forma optima
+#Estimacion NP con la ventana elegida de forma optima
 ## Lo hago de forma paralela
-library(parallel)
-library(data.table)
 
 # puntosNP = seq(-3,3,0.01)
-puntosNP = seq(0,1,0.001)
+# puntosNP = seq(0,1,0.001)
+puntosNP = seq(round(pnorm(-3),3),round(pnorm(3),3),0.001)
 th_use = 'pcg'
 
 funEstNoPar = function(ii) {
@@ -96,8 +99,6 @@ funEstNoPar = function(ii) {
 
 
 trials = 1:200
-
-
 
 cl <- makeCluster(detectCores())
 clusterExport(cl, c("thetaest","puntosNP","th_use","ventana1D","estRegNoPar","normal"))
@@ -116,9 +117,19 @@ stopCluster(cl)
 tfin = Sys.time()
 difftime(tfin,tini,units = 'secs')
 
+
+
 #### data frame con curvas ICC estimadas con regresion no parametrica
 iccnp_mat = do.call(cbind,results)
-colnames(iccnp_mat) = names(thetaest)[trials]
+colnames(iccnp_mat) = colnames(thetaest)[trials]
+
+#############################################
+####### Guardo resultados haste el momento
+
+# save.image(file = 'Resultados/ResHasta_iccnp_mat.RData')
+# load('Resultados/ResHasta_iccnp_mat.RData')
+
+
 ############################################
 ############################################
 ############################################
@@ -136,7 +147,7 @@ funEstNoParIso = function(ii) {
   hdi= 0.9*length(iccnp)^(-1/5)*min(sd(iccnp),(quantile(iccnp,prob=0.75)-quantile(iccnp,prob=0.25))/1.364)
   nopariso=icciso(icc1=iccnp,hd=hdi,
                   thetaiso = thetaiso,nt=200,
-                  puntosicc = puntosicc,nucleod=epa)
+                  puntosicc = puntosicc,nucleod=normal)
 
   return(nopariso$resfin)
 }
@@ -163,7 +174,7 @@ difftime(tfin,tini,units = 'secs')
 
 #### data frame con curvas ICC estimadas de forma isotonica
 icciso_mat = do.call(cbind,resultsISO)
-colnames(icciso_mat) = names(iccnp_mat)
+colnames(icciso_mat) = colnames(iccnp_mat)
 ############################################
 ############################################
 ############################################
@@ -192,12 +203,12 @@ colnames(infoFunPar) = rownames(parEst)[trials]
 infoFunIso = do.call(cbind,
                      sapply(trials, function(xx) {
 
-                       icciso = icciso_mat[,xx]
-                       info = derISO_Info(icciso,
+                       iccis = icciso_mat[,xx]
+                       info = derISO_Info(iccis,
                                           puntuni = thetaiso,
                                           nucleo = normal,
                                           hd = NULL)
-                       list(info$Info)
+                       list(info$informEntorno)
                      }))
 
 colnames(infoFunIso) = colnames(icciso_mat)[trials]
