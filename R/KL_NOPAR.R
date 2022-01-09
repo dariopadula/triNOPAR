@@ -25,5 +25,17 @@ KL_NOPAR = function(iccNP,sepGrilla,entorno) {
     funKL_int_NOPAR(iccNP,sepGrilla,entorno,jfijo = tt)
   })
 
-  return(KL)
+  ###### Entorno
+  refInf = max(min(iccNP),0.4)
+  refSup = min(max(iccNP),max(0.6,refInf))
+
+  pos40 = which.min(abs(iccNP - refInf))
+  pos60 = which.min(abs(iccNP - refSup))
+
+  if(pos40 == pos60) pos60 = pos60 + 20
+  ##### Me quedo con esos valores y el resto lo mando a cero
+  KLEntorno = KL*0
+  KLEntorno[pos40:pos60] = KL[pos40:pos60]
+
+  return(KLEntorno)
 }
