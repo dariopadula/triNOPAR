@@ -11,6 +11,7 @@ library(dplyr)
 #'library(MASS)
 
 #******************************************************************
+#Actualizando 2022_sincro
 #Primero generamos data frame vacio donde iran los diferentes
 #items que componen nuestro banco
 #Esto se debe inicializar una sola vez a menos que se quiera cambiar
