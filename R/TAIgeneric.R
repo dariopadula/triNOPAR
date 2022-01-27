@@ -80,7 +80,8 @@ TAIgeneric <- function(sujtai,
         ## Transforma verosimilitud en una matriz con la dimension de curvaNOPAR
         veroPrev = matrix(veroPrev,ncol = 1,nrow = nrow(curvaNOPAR),byrow = F)
         ## Normaliza para obtener el pi_n (Ecuacion 1)
-        pi_n = veroPrev/sum(veroPrev)
+        # pi_n = matrix(veroPrev/sum(veroPrev),nrow = nrow(curvaNOPAR),ncol = 1,byrow = F)
+        pi_n = matrix(veroPrev/sum(veroPrev),ncol = ncol(curvaNOPAR),nrow = nrow(curvaNOPAR),byrow = F)
 
         ## Numerador de la ecuacion (2)
         pi_yj1_num = curvaNOPAR*pi_n
@@ -140,7 +141,7 @@ TAIgeneric <- function(sujtai,
       }
       #calcula verosimilitud
       vero=vero*(curva^respu)*(1-curva)^(1-respu)
-      #plot(vero)
+      # plot(vero)
       #estimacion de theta
       if( length(unique(unlist(resp))) == 1 ){## solo aciertos o solo errores
         delta=1
@@ -153,6 +154,7 @@ TAIgeneric <- function(sujtai,
         th_est=seqTheta[which.max(vero)]
         if(length(resp)<minit){delta=1} else {delta=abs(th_est-th_vie)}
       }
+      # print(th_est)
     }
     estima[s,1]=th_est
     estima[s,2]=delta

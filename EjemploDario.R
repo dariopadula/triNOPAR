@@ -24,11 +24,11 @@ bancoITEMS<- genBancoDF(nparam=15)
 
 #Generamos un banco de 300 items
 set.seed(12345)
-m1pl=matrix(c(1,1,-2.5,2.5),byrow=T,ncol=2,nrow=2)
+m1pl=matrix(c(1,1,-2.5,1.5),byrow=T,ncol=2,nrow=2)
 bancoITEMS=genitmodelo(1000,"1PL",m1pl,bancoITEMS)
-m2pl=matrix(c(0.5,2,-2.5,2.5),byrow=T,ncol=2,nrow=2)
+m2pl=matrix(c(0.5,2,-2.5,1.5),byrow=T,ncol=2,nrow=2)
 bancoITEMS=genitmodelo(1000,"2PL",m2pl,bancoITEMS)
-m3pl=matrix(c(0.5,2,-2.5,2.5,0.2,0.4),byrow=T,ncol=2,nrow=3)
+m3pl=matrix(c(0.5,2,-2.5,1.5,0.2,0.4),byrow=T,ncol=2,nrow=3)
 bancoITEMS=genitmodelo(1000,"3PL",m3pl,bancoITEMS)
 
 #diseno=matrix(c(100,"2PL",100,"1PL",100,"3PL"),ncol=2,byrow = T)
@@ -263,5 +263,114 @@ res = TAIgeneric(sujtai,
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
 
 ######################
-#### Cambio dario
+curvaNOPAR = icciso_mat
 
+res = TAIgeneric(sujtai,
+                 epsilon,
+                 minit,
+                 maxit,
+                 curvaNOPAR,
+                 parametros,
+                 parEst,
+                 itemsSelec = c('InfoFun'),
+                 matrizSelect = infoFunIso,
+                 seqTheta = puntosNP)
+
+###################################################
+#### Calculo de los errores
+errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
+
+
+######################
+curvaNOPAR = icciso_mat
+
+res = TAIgeneric(sujtai,
+                 epsilon,
+                 minit,
+                 maxit,
+                 curvaNOPAR,
+                 parametros,
+                 parEst,
+                 itemsSelec = c('KL'),
+                 matrizSelect = KLFunNoParIso,
+                 seqTheta = puntosNP)
+
+###################################################
+#### Calculo de los errores
+errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
+
+
+######################
+curvaNOPAR = icciso_mat
+
+res = TAIgeneric(sujtai,
+                 epsilon,
+                 minit,
+                 maxit,
+                 curvaNOPAR,
+                 parametros,
+                 parEst,
+                 itemsSelec = c('Random'),
+                 matrizSelect = infoFunIso,
+                 seqTheta = puntosNP)
+
+###################################################
+#### Calculo de los errores
+errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
+
+
+######################
+curvaNOPAR = icciso_mat
+
+res = TAIgeneric(sujtai,
+                 epsilon,
+                 minit,
+                 maxit,
+                 curvaNOPAR,
+                 parametros,
+                 parEst,
+                 itemsSelec = c('ESH'),
+                 matrizSelect = NULL,
+                 seqTheta = puntosNP)
+
+###################################################
+#### Calculo de los errores
+errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
+
+
+######################
+curvaNOPAR = iccnp_mat
+
+res = TAIgeneric(sujtai,
+                 epsilon,
+                 minit,
+                 maxit,
+                 curvaNOPAR,
+                 parametros,
+                 parEst,
+                 itemsSelec = c('KL'),
+                 matrizSelect = KLFunNoPar,
+                 seqTheta = puntosNP)
+
+###################################################
+#### Calculo de los errores
+errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
+
+
+######################
+curvaNOPAR = iccnp_mat
+
+res = TAIgeneric(sujtai,
+                 epsilon,
+                 minit,
+                 maxit,
+                 curvaNOPAR,
+                 parametros,
+                 parEst,
+                 itemsSelec = c('ESH'),
+                 matrizSelect = NULL,
+                 seqTheta = puntosNP)
+
+###################################################
+#### Calculo de los errores
+errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
