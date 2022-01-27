@@ -11,6 +11,7 @@ library(dplyr)
 #'library(MASS)
 
 #******************************************************************
+#Actualizando 2022_sincro
 #Primero generamos data frame vacio donde iran los diferentes
 #items que componen nuestro banco
 #Esto se debe inicializar una sola vez a menos que se quiera cambiar
@@ -382,7 +383,21 @@ res10=TAIgeneric(sujtai,
 
 ###################################################
 #### Calculo de los errores
-errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
+errYses1 = ERRYSES(simData = res1,grilla = seq(1:100)/100) #para-MI
+errYses1[["raiz"]]
+errYses2 = ERRYSES(simData = res2,grilla = seq(1:100)/100)#para-KL
+errYses2[["raiz"]]
+errYses3 = ERRYSES(simData = res3,grilla = seq(1:100)/100)#para-Random
+errYses3[["raiz"]]
+errYses4 = ERRYSES(simData = res4,grilla = seq(1:100)/100)#NP-KL
+errYses4[["raiz"]]
+errYses5 = ERRYSES(simData = res5,grilla = seq(1:100)/100)#NP-ESH
+errYses5[["raiz"]]
+errYses6 = ERRYSES(simData = res6,grilla = seq(1:100)/100)#NP-RANDOM
+errYses6[["raiz"]]
+errYses7 = ERRYSES(simData = res7,grilla = seq(1:100)/100)#ISO-MI***
+errYses7[["raiz"]]
+errYses8 = ERRYSES(simData = res8,grilla = seq(1:100)/100)#ISO-MI***
+errYses8[["raiz"]]
 
-
-
+probando una vez mas
