@@ -243,8 +243,8 @@ parametros$P3 = ifelse(is.na(parametros$P3),0,parametros$P3)
 
 sujtai = rnorm(100)
 epsilon = 0.01
-minit = 10
-maxit = 20
+minit = 0
+maxit = 5
 curvaNOPAR = NULL
 
 res = TAIgeneric(sujtai,
@@ -262,6 +262,22 @@ res = TAIgeneric(sujtai,
 #### Calculo de los errores
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
 
+
+
+res = TAIgeneric(sujtai,
+                 epsilon,
+                 minit,
+                 maxit,
+                 curvaNOPAR,
+                 parametros,
+                 parEst,
+                 itemsSelec = c('Random'),
+                 matrizSelect = infoFunPar,
+                 seqTheta = puntosNP)
+
+###################################################
+#### Calculo de los errores
+errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
 
 
 ###Caso Ceci
