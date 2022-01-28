@@ -22,19 +22,32 @@
 
 
 
-derISO_Info = function(icciso,puntuni,nucleo,hd = NULL) {
+derISO_Info = function(iccis,puntuni,nucleo,hd = NULL) {
 
   ###### Calcula la derivada
-  if(is.null(hd)) hd= 0.9*length(icciso)^(-1/5)*min(sd(icciso,na.rm = T),(summary(icciso)[5]-summary(icciso)[2])/1.364)
+  if(is.null(hd)) hd= 0.9*length(iccis)^(-1/5)*min(sd(iccis,na.rm = T),
+                                                   (summary(iccis)[5]-summary(iccis)[2])/1.364)
 
-  iccisoFila = matrix(icciso,length(icciso),length(icciso),byrow = T)
+  iccisoFila = matrix(iccis,length(iccis),length(iccis),byrow = T)
   iccisoCol = t(iccisoFila)
   difer = iccisoFila - iccisoCol
 
   deriso =  (length(puntuni)*hd)/(apply(difer,2,function(xx) sum(nucleo(xx,h = hd,th = 0)$res,na.rm = T)))
 
   ###### Calcula la funcion de informacion
-  inform = (deriso^2)/(icciso*(1 - icciso))
+  inform = (deriso^2)/(iccis*(1 - iccis))
 
-  return(list(deriv = deriso,Info = inform))
+  ###### Entorno
+  refInf = max(min(iccis),0.4)
+  refSup = min(max(iccis),max(0.6,refInf))
+
+  pos40 = which.min(abs(iccis - refInf))
+  pos60 = which.min(abs(iccis - refSup))
+
+  if(pos40 == pos60) pos60 = pos60 + 20
+  ##### Me quedo con esos valores y el resto lo mando a cero
+  informEntorno = inform*0
+  informEntorno[pos40:pos60] = inform[pos40:pos60]
+
+  return(list(deriv = deriso,Info = inform,informEntorno = informEntorno))
 }

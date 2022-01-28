@@ -20,11 +20,16 @@
 icciso=function(icc1,hd,thetaiso,nt,puntosicc,nucleod){
 
   #Arma la grilla para aplicar la ec 2 del cap Mario
-  t=c(1:nt/nt)
-  t[length(t)]=0.9999
+  # t=c(1:nt/nt)
+  t = seq(min(puntosicc),max(puntosicc),length.out = nt)
+  #t[length(t)]=0.9999
+
   fes=numeric(length(t))
-  auxpu=c(0,puntosicc,1)
-  auxic=c(icc1[1],icc1,1)
+  # auxpu=c(0,puntosicc,1)
+  # auxic=c(icc1[1],icc1,1)
+  auxpu=c(puntosicc)
+  auxic=c(icc1)
+
   #Se calcula la icc en los puntos i/nt
   ifi1<-approx(auxpu,auxic,t)$y
 
@@ -33,6 +38,7 @@ icciso=function(icc1,hd,thetaiso,nt,puntosicc,nucleod){
     alu = sapply(ifi1, function(yy) {
       integrand=function(x){nucleod((yy-x)/hd,1,0)$res}
       resAlu = integrate(integrand,0,t[ii],subdivisions=10,rel.tol = 0.03,abs.tol =0.05,stop.on.error = FALSE)[[1]]
+      resAlu
     })
     resFes = (1/(length(ifi1)*hd))*sum(alu)
   })
