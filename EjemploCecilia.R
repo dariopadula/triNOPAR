@@ -124,10 +124,22 @@ colnames(iccnp_mat) = names(thetaest)[trials]
 #Graficos de ICCNP
 thepl=qnorm(seq(0,1,0.001))
 #thepl=ICCNPT$puntos
+D=1
+parametros = bancTeor[,c('NombreIt','Modelo',paste0('P',1:3))]
 a<-filter(parametros, NombreIt=="IT488")[,"P1"]
 b<-filter(parametros, NombreIt=="IT488")[,"P2"]
 c<-filter(parametros, NombreIt=="IT488")[,"P3"]
+c<-0
 plot(thepl,iccnp_mat[,"IT4881PL"],col="blue",xlim=c(-4,4),ylim=c(0,1))
+Prob1 <- c + (1 - c) /(1 + exp(-D * a * (thepl - b)))
+points(thepl,Prob1,col="red")
+
+###Caso de item con difficultad =0.5
+a<-filter(parametros, NombreIt=="IT789")[,"P1"]
+b<-filter(parametros, NombreIt=="IT789")[,"P2"]
+c<-filter(parametros, NombreIt=="IT789")[,"P3"]
+c<-0
+plot(thepl,iccnp_mat[,"IT7891PL"],col="blue",xlim=c(-4,4),ylim=c(0,1))
 Prob1 <- c + (1 - c) /(1 + exp(-D * a * (thepl - b)))
 points(thepl,Prob1,col="red")
 
@@ -177,6 +189,29 @@ difftime(tfin,tini,units = 'secs')
 icciso_mat = do.call(cbind,resultsISO)
 #colnames(icciso_mat) = names(iccnp_mat)
 colnames(icciso_mat) =names(thetaest)[trials]
+sum(is.na(icciso_mat[1,])) #Tenemos 52 NAs al inicio
+sum(is.na(icciso_mat[1001,]))#Todos los itemes tienen NA en el ultimo punto de la grilla
+
+#Graficos de ICCNPISO
+D=1
+parametros = bancTeor[,c('NombreIt','Modelo',paste0('P',1:3))]
+a<-filter(parametros, NombreIt=="IT488")[,"P1"]
+b<-filter(parametros, NombreIt=="IT488")[,"P2"]
+c<-filter(parametros, NombreIt=="IT488")[,"P3"]
+c<-0
+plot(thepl,icciso_mat[,"IT4881PL"],col="blue",xlim=c(-4,4),ylim=c(0,1))
+Prob1 <- c + (1 - c) /(1 + exp(-D * a * (thepl - b)))
+points(thepl,Prob1,col="red")
+
+###Caso de item con difficultad =0.5
+a<-filter(parametros, NombreIt=="IT789")[,"P1"]
+b<-filter(parametros, NombreIt=="IT789")[,"P2"]
+c<-filter(parametros, NombreIt=="IT789")[,"P3"]
+c<-0
+plot(thepl,icciso_mat[,"IT7891PL"],col="blue",xlim=c(-4,4),ylim=c(0,1))
+Prob1 <- c + (1 - c) /(1 + exp(-D * a * (thepl - b)))
+points(thepl,Prob1,col="red")
+
 ############################################
 ############################################
 ############################################
@@ -200,6 +235,10 @@ infoFunPar = do.call(cbind,
 
 colnames(infoFunPar) = rownames(parEst)[trials]
 
+sum(is.na(infoFunPar))
+
+
+
 ### CURVAS ISOTONICAS
 
 infoFunIso = do.call(cbind,
@@ -214,12 +253,9 @@ infoFunIso = do.call(cbind,
                      }))
 
 colnames(infoFunIso) = colnames(icciso_mat)[trials]
-#Grafico iccisotona
-thepl=qnorm(seq(0,1,0.001))
-plot(thepl,icciso_mat[,"IT4881PL"],col="blue",xlim=c(-4,4),ylim=c(0,1))
-Prob1 <- c + (1 - c) /(1 + exp(-D * a * (thepl - b)))
-points(thepl,Prob1,col="red")
 
+
+sum(is.na(infoFunIso))#arrastramos los 252 NA
 
 #################################################
 #################################################
@@ -232,14 +268,19 @@ KLFunPar = kl_mat_par(paramsMIRT = parEst[trials,],
 
 colnames(KLFunPar) = rownames(parEst)[trials]
 
-
+sum(is.na(KLFunPar))#no hay NA
 ##############################
 ### ICC no par
 KLFunNoPar = kl_mat_NOpar(iccNP_mat = iccnp_mat[,trials],sepGrilla = 0.001,entorno = 0.1)
-
+sum(is.na(KLFunNoPar))#no hay NA
 ##############################
 ### ICC no par isotonica
 KLFunNoParIso = kl_mat_NOpar(iccNP_mat = icciso_mat[,trials],sepGrilla = 0.001,entorno = 0.1)
+sum(is.infinite(KLFunNoParIso))
+sum(is.na(KLFunNoParIso))
+
+#IT31PL caso de un item que da infinito
+plot(thepl,icciso_mat[,"IT31PL"],col="blue",xlim=c(-4,4),ylim=c(0,1))
 
 
 ####################################################################
@@ -362,7 +403,7 @@ res9=TAIgeneric(sujtai,
                 #matrizSelect = KLFunNoParIso,
                 seqTheta = puntosNP)
 
-res10=TAIgeneric(sujtai,
+res10=TAIgeneric_Ceci(sujtai,
                  epsilon,
                  minit,
                  maxit,
@@ -372,12 +413,6 @@ res10=TAIgeneric(sujtai,
                  itemsSelec = c('Random'),
                  #matrizSelect = KLFunNoParIso,
                  seqTheta = puntosNP)
-
-
-
-
-
-
 
 
 
@@ -400,4 +435,4 @@ errYses7[["raiz"]]
 errYses8 = ERRYSES(simData = res8,grilla = seq(1:100)/100)#ISO-MI***
 errYses8[["raiz"]]
 
-probando una vez mas
+#Actualizado al 28_01_22
