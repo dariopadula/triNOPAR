@@ -128,8 +128,12 @@ colnames(iccnp_mat) = colnames(thetaest)[trials]
 
 # save.image(file = 'Resultados/ResHasta_iccnp_mat.RData')
 # load('Resultados/ResHasta_iccnp_mat.RData')
+nIt = 4
 
+ICC = iccFun(a = bancTeor[nIt,'P1'],b = bancTeor[nIt,'P2'],c = 0,grilla = qnorm(puntosNP))
 
+plot(qnorm(puntosNP),ICC)
+lines(qnorm(puntosNP),iccnp_mat[,nIt],col = 'red')
 ############################################
 ############################################
 ############################################
@@ -175,6 +179,15 @@ difftime(tfin,tini,units = 'secs')
 #### data frame con curvas ICC estimadas de forma isotonica
 icciso_mat = do.call(cbind,resultsISO)
 colnames(icciso_mat) = colnames(iccnp_mat)
+
+
+nIt = 1
+ICC = iccFun(a = bancTeor[nIt,'P1'],b = bancTeor[nIt,'P2'],c = 0,grilla = qnorm(puntosNP))
+plot(qnorm(puntosNP),ICC)
+lines(qnorm(puntosNP),icciso_mat[,nIt],col = 'red')
+lines(qnorm(puntosNP),iccnp_mat[,nIt],col = 'green')
+
+
 ############################################
 ############################################
 ############################################
@@ -213,6 +226,10 @@ infoFunIso = do.call(cbind,
 
 colnames(infoFunIso) = colnames(icciso_mat)[trials]
 
+
+plot(qnorm(puntosNP),infoFunPar[,4])
+plot(qnorm(puntosNP),infoFunIso[,4])
+
 #################################################
 #################################################
 #################################################
@@ -240,13 +257,19 @@ rownames(parametros) = apply(parametros[,c('NombreIt','Modelo')],1,function(xx) 
 parametros$P3 = ifelse(is.na(parametros$P3),0,parametros$P3)
 
 
+####################################################
+############ GUARDO HASTA ACA
+# save.image(file = 'Resultados/ResHasta_iccnp_mat.RData')
+# load('Resultados/ResHasta_iccnp_mat.RData')
+#############################################################
+
 
 sujtai = rnorm(100)
 epsilon = 0.01
 minit = 0
-maxit = 5
-curvaNOPAR = NULL
+maxit = 20
 
+curvaNOPAR = NULL
 res = TAIgeneric(sujtai,
                        epsilon,
                        minit,
@@ -260,25 +283,29 @@ res = TAIgeneric(sujtai,
 
 ###################################################
 #### Calculo de los errores
+plot(res[,c(1,4)])
+cor(res[,c(1,4)])
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
-
+errYses[[1]]
 
 
 res = TAIgeneric(sujtai,
                  epsilon,
                  minit,
                  maxit,
-                 curvaNOPAR,
+                 curvaNOPAR = NULL,
                  parametros,
                  parEst,
                  itemsSelec = c('Random'),
-                 matrizSelect = infoFunPar,
+                 matrizSelect = NULL,
                  seqTheta = puntosNP)
 
 ###################################################
 #### Calculo de los errores
+plot(res[,c(1,4)])
+cor(res[,c(1,4)])
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
-
+errYses[[1]]
 
 ###Caso Ceci
 
@@ -299,8 +326,10 @@ res = TAIgeneric(sujtai,
 
 ###################################################
 #### Calculo de los errores
+plot(res[,c(1,4)])
+cor(res[,c(1,4)])
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
-
+errYses[[1]]
 
 ######################
 curvaNOPAR = icciso_mat
@@ -319,7 +348,7 @@ res = TAIgeneric(sujtai,
 ###################################################
 #### Calculo de los errores
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
-
+errYses[[1]]
 
 ######################
 curvaNOPAR = icciso_mat
@@ -332,13 +361,13 @@ res = TAIgeneric(sujtai,
                  parametros,
                  parEst,
                  itemsSelec = c('Random'),
-                 matrizSelect = infoFunIso,
+                 matrizSelect = NULL,
                  seqTheta = puntosNP)
 
 ###################################################
 #### Calculo de los errores
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
-
+errYses[[1]]
 
 ######################
 curvaNOPAR = icciso_mat
@@ -357,7 +386,7 @@ res = TAIgeneric(sujtai,
 ###################################################
 #### Calculo de los errores
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
-
+errYses[[1]]
 
 ######################
 curvaNOPAR = iccnp_mat
@@ -376,7 +405,7 @@ res = TAIgeneric(sujtai,
 ###################################################
 #### Calculo de los errores
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
-
+errYses[[1]]
 
 ######################
 curvaNOPAR = iccnp_mat
@@ -395,7 +424,7 @@ res = TAIgeneric(sujtai,
 ###################################################
 #### Calculo de los errores
 errYses = ERRYSES(simData = res,grilla = seq(1:100)/100)
-
+errYses[[1]]
 
 #### Cambio esto para mario
 

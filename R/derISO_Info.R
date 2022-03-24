@@ -30,9 +30,11 @@ derISO_Info = function(iccis,puntuni,nucleo,hd = NULL) {
 
   iccisoFila = matrix(iccis,length(iccis),length(iccis),byrow = T)
   iccisoCol = t(iccisoFila)
-  difer = iccisoFila - iccisoCol
+  difer = iccisoCol - iccisoFila
 
-  deriso =  (length(puntuni)*hd)/(apply(difer,2,function(xx) sum(nucleo(xx,h = hd,th = 0)$res,na.rm = T)))
+  deriso =  (length(puntuni)*hd)/(apply(difer,2,function(xx) {
+    sum(nucleo(xx,h = hd,th = 0)$res,na.rm = T)
+    }))
 
   ###### Calcula la funcion de informacion
   inform = (deriso^2)/(iccis*(1 - iccis))
