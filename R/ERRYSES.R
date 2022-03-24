@@ -18,6 +18,7 @@
 
 
 ERRYSES = function(simData,grilla = seq(1:100)/100) {
+
   RMSE = sqrt(sum((simData[,1]-simData[,4])^2/nrow(simData)))
   BIAS = sum((simData[,1]-simData[,4])/nrow(simData))
 
@@ -39,3 +40,4 @@ ERRYSES = function(simData,grilla = seq(1:100)/100) {
 
   return(list(raiz=RMGEN,rportheta=RMBIATH))
 }
+

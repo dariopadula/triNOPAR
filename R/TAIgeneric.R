@@ -132,18 +132,22 @@ TAIgeneric <- function(sujtai,
       if(raux<Psuj){respu=1}else{respu=0}
       resp=c(resp,respu)
 
+      # plot(seqTheta,matrizSelect[,itsel])
+      # abline(v = th_est)
+
       # Calcula la curva dependiendo si es NP o Parametrica
       if(!is.null(curvaNOPAR)) {
         curva = curvaNOPAR[,itsel]
       } else {
         aEst = parEst[itsel,'a']
-        bEst = parEst[itsel,'a']
+        bEst = parEst[itsel,'b']
         cEst = parEst[itsel,'c']
         curva = iccFun(aEst,bEst,cEst,grilla = qnorm(seqTheta))
       }
       #calcula verosimilitud
       vero=vero*(curva^respu)*(1-curva)^(1-respu)
-      # plot(vero)
+      # plot(qnorm(seqTheta),curva)
+      # print(itsel)
       #estimacion de theta
       if( length(unique(unlist(resp))) == 1 ){## solo aciertos o solo errores
         delta=1
