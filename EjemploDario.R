@@ -220,7 +220,8 @@ infoFunIso = do.call(cbind,
                        info = derISO_Info(iccis,
                                           puntuni = thetaiso,
                                           nucleo = normal,
-                                          hd = NULL)
+                                          hd = NULL,
+                                          shiftFun = qnorm)
                        list(info$informEntorno)
                      }))
 
@@ -243,10 +244,18 @@ KLFunPar = kl_mat_par(paramsMIRT = parEst[trials,],
 colnames(KLFunPar) = rownames(parEst)[trials]
 ##############################
 ### ICC no par
-KLFunNoPar = kl_mat_NOpar(iccNP_mat = iccnp_mat[,trials],sepGrilla = 0.001,entorno = 0.1,puntuni = puntuni)
+KLFunNoPar = kl_mat_NOpar(iccNP_mat = iccnp_mat[,trials],
+                          sepGrilla = 0.001,
+                          entorno = 0.1,
+                          puntuni = puntuni,
+                          shiftFun = qnorm)
 ##############################
 ### ICC no par isotonica
-KLFunNoParIso = kl_mat_NOpar(iccNP_mat = icciso_mat[,trials],sepGrilla = 0.001,entorno = 0.1,puntuni = puntuni)
+KLFunNoParIso = kl_mat_NOpar(iccNP_mat = icciso_mat[,trials],
+                             sepGrilla = 0.001,
+                             entorno = 0.1,
+                             puntuni = puntuni,
+                             shiftFun = qnorm)
 
 
 nIt = 20

@@ -4,7 +4,7 @@
 \alias{kl_mat_NOpar}
 \title{Estima la funcion de KL para un conjunto de items estimados de forma NO parametrica}
 \usage{
-kl_mat_NOpar(iccNP_mat, sepGrilla, entorno, puntuni)
+kl_mat_NOpar(iccNP_mat, sepGrilla, entorno, puntuni, shiftFun = qnorm)
 }
 \arguments{
 \item{iccNP_mat}{data frames con las estimaciones de las ICC no parametricas. Los nombres de las columnas tienen que ser los nombres
@@ -16,6 +16,9 @@ de los items.}
 Mismos que la funcion \strong{funKL_int_NOPAR}}
 
 \item{puntuni}{grilla en el intervalo 0 1 donde estan estimados los puntos de la funcion icc no parametrica}
+
+\item{shiftFun}{es la funcion que lleva a grilla 0 1 a la grilla de la distribucion que se indique, por defecto
+se pone la normal}
 }
 \value{
 Un data frame con tantas columnas como items y filas como puntos de la grilla

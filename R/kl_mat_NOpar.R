@@ -11,6 +11,8 @@
 #' @param entorno porcentaje que indica cuantos puntos tomar en el entorno del punto a estimar.
 #' Mismos que la funcion **funKL_int_NOPAR**
 #' @param puntuni grilla en el intervalo 0 1 donde estan estimados los puntos de la funcion icc no parametrica
+#' @param shiftFun es la funcion que lleva a grilla 0 1 a la grilla de la distribucion que se indique, por defecto
+#' se pone la normal
 
 #' @return
 #' Un data frame con tantas columnas como items y filas como puntos de la grilla
@@ -24,12 +26,12 @@
 
 
 
-kl_mat_NOpar = function(iccNP_mat,sepGrilla,entorno,puntuni) {
+kl_mat_NOpar = function(iccNP_mat,sepGrilla,entorno,puntuni,shiftFun = qnorm) {
 
   ##### Calcula la ICCiso en una grilla de theta
   ## XXX Nuevo
-  thet = qnorm(puntuni)
-  tmax = floor(max(abs(thet)))
+  thet = shiftFun(puntuni)
+  tmax = max(abs(thet))
   thetaG = seq(-tmax,tmax,length = length(puntuni))
 
   #################################################

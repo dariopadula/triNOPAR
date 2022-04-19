@@ -8,6 +8,9 @@
 #' @param nucleo alguna funcion de nucleo de dentro de las opciones en **nucleosAll**
 #' @param hd ventan para la estimacion, por defecto es NULL, en ese caso se estima segun formula dada, si se engresa un valor,
 #' se toma ese.
+#' @param shiftFun es la funcion que lleva a grilla 0 1 a la grilla de la distribucion que se indique, por defecto
+#' se pone la normal
+#'
 #' @return Una lista donde con:
 #' * deriv: -Derivada de la curva isotonica
 #' * Info: Funcion de informacion de la curva isotonica
@@ -22,13 +25,13 @@
 
 
 
-derISO_Info = function(iccis,puntuni,nucleo,hd = NULL) {
+derISO_Info = function(iccis,puntuni,nucleo,hd = NULL,shiftFun = qnorm) {
 
 
   ##### Calcula la ICCiso en una grilla de theta
   ## XXX Nuevo
-  thet = qnorm(puntuni)
-  tmax = floor(max(abs(thet)))
+  thet = shiftFun(puntuni)
+  tmax = max(abs(thet))
   thetaG = seq(-tmax,tmax,length = length(puntuni))
 
   iccis<-approx(thet,iccis,thetaG)$y
