@@ -33,7 +33,6 @@ Una vector con los anchos de ventana vantanas
 Esta funcion utiliza la libreria np
 }
 \examples{
-
 \dontrun{
 # Genero el banco vacio
 bancoIT = genBancoDF(nomFijas = c('NombreIt','Modelo'),nparam = 15)
@@ -49,6 +48,7 @@ respu=GenResp(banco = bancTeor,thetas)
 respG = estFunG(resp = respu,rotacion = c('oblimin'),corr = c('tet'),ndims = 1)
 # Estimo los thetas de forma no parametrica y usando la transformacion a la distribucion normal
 thetaest = estthetaNP(scores = respG,Dth = qnorm)
+
 # Estima la ventana para un item especifico
 h=ventana1D(items = 1,th_use = 'dtg',test = thetaest,nucleodes="gaussian",1000)
 }

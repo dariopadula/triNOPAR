@@ -128,7 +128,7 @@ colnames(iccnp_mat) = colnames(thetaest)[trials]
 
 # save.image(file = 'Resultados/ResHasta_iccnp_mat.RData')
 # load('Resultados/ResHasta_iccnp_mat.RData')
-nIt = 4
+nIt = 100
 
 ICC = iccFun(a = bancTeor[nIt,'P1'],b = bancTeor[nIt,'P2'],c = 0,grilla = qnorm(puntosNP))
 
@@ -181,7 +181,7 @@ icciso_mat = do.call(cbind,resultsISO)
 colnames(icciso_mat) = colnames(iccnp_mat)
 
 
-nIt = 1
+nIt = 15
 ICC = iccFun(a = bancTeor[nIt,'P1'],b = bancTeor[nIt,'P2'],c = 0,grilla = qnorm(puntosNP))
 plot(qnorm(puntosNP),ICC)
 lines(qnorm(puntosNP),icciso_mat[,nIt],col = 'red')
@@ -227,8 +227,9 @@ infoFunIso = do.call(cbind,
 colnames(infoFunIso) = colnames(icciso_mat)[trials]
 
 
-plot(qnorm(puntosNP),infoFunPar[,4])
-plot(qnorm(puntosNP),infoFunIso[,4])
+nIt = 15
+plot(qnorm(puntosNP),infoFunPar[,nIt])
+plot(qnorm(puntosNP),infoFunIso[,nIt])
 
 #################################################
 #################################################
@@ -242,12 +243,16 @@ KLFunPar = kl_mat_par(paramsMIRT = parEst[trials,],
 colnames(KLFunPar) = rownames(parEst)[trials]
 ##############################
 ### ICC no par
-KLFunNoPar = kl_mat_NOpar(iccNP_mat = iccnp_mat[,trials],sepGrilla = 0.001,entorno = 0.1)
+KLFunNoPar = kl_mat_NOpar(iccNP_mat = iccnp_mat[,trials],sepGrilla = 0.001,entorno = 0.1,puntuni = puntuni)
 ##############################
 ### ICC no par isotonica
-KLFunNoParIso = kl_mat_NOpar(iccNP_mat = icciso_mat[,trials],sepGrilla = 0.001,entorno = 0.1)
+KLFunNoParIso = kl_mat_NOpar(iccNP_mat = icciso_mat[,trials],sepGrilla = 0.001,entorno = 0.1,puntuni = puntuni)
 
 
+nIt = 20
+plot(qnorm(puntuni),KLFunPar[,nIt])
+plot(qnorm(puntuni),KLFunNoPar[,nIt])
+plot(qnorm(puntuni),KLFunNoParIso[,nIt])
 ####################################################################
 ####### INSUMOS PARA EL TAI (prueba)
 
