@@ -4,7 +4,7 @@
 \alias{derISO_Info}
 \title{Estima la derivada primera de la curva ISO y la funcion de informacion}
 \usage{
-derISO_Info(iccis, puntuni, nucleo, hd = NULL)
+derISO_Info(iccis, puntuni, nucleo, hd = NULL, shiftFun = qnorm)
 }
 \arguments{
 \item{puntuni}{grilla donde esta evaluada la curva iso}
@@ -13,6 +13,9 @@ derISO_Info(iccis, puntuni, nucleo, hd = NULL)
 
 \item{hd}{ventan para la estimacion, por defecto es NULL, en ese caso se estima segun formula dada, si se engresa un valor,
 se toma ese.}
+
+\item{shiftFun}{es la funcion que lleva a grilla 0 1 a la grilla de la distribucion que se indique, por defecto
+se pone la normal}
 
 \item{icciso}{un vector con la estimacion isotonica}
 }
