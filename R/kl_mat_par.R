@@ -7,7 +7,7 @@
 #' @param paramsMIRT data frames con los parametros estimados para elmodelo parametrico. Los nombres
 #' de las filas de este data rame tienen que ser los nomres de los items.
 #' @param grillaEval grilla de puntos donde se va a estimar la funcion
-#' @param distTrans distribucion para transformar la grilla en caso de que la grilla este definida en $[0,1]$.
+#' @param shiftFun distribucion para transformar la grilla en caso de que la grilla este definida en $[0,1]$.
 
 #' @return
 #' Un data frame con tantas columnas como items y filas como puntos de la grilla
@@ -20,11 +20,11 @@
 
 
 
-kl_mat_par = function(paramsMIRT,grillaEval,distTrans = qnorm) {
+kl_mat_par = function(paramsMIRT,grillaEval,shiftFun = qnorm) {
   nomItems = rownames(paramsMIRT)
   kl_res = do.call(cbind,sapply(nomItems,
                                 function(xx) {
-                                  res = KL_PAR(nomItem = xx,paramsMIRT,grillaEval,distTrans)
+                                  res = KL_PAR(nomItem = xx,paramsMIRT,grillaEval,shiftFun)
                                   list(res)
                                 }
   ))

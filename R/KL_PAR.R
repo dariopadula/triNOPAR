@@ -7,7 +7,7 @@
 #' @param nomItem string con el nombre del item a estimar
 #' @param paramsMIRT data frames con los parametros estimados para elmodelo parametrico
 #' @param grillaEval grilla de puntos donde se va a estimar la funcion
-#' @param distTrans distribucion para transformar la grilla en caso de que la grilla este definida en $[0,1]$.
+#' @param shiftFun distribucion para transformar la grilla en caso de que la grilla este definida en $[0,1]$.
 
 #' @return
 #' Un vector con la funcion KL estimada en cada punto de la grilla.
@@ -18,13 +18,13 @@
 #' }
 
 
-KL_PAR = function(nomItem,paramsMIRT,grillaEval,distTrans = qnorm) {
+KL_PAR = function(nomItem,paramsMIRT,grillaEval,shiftFun = qnorm) {
 
   if(grillaEval[1] == 0) grillaEval[1] = (grillaEval[2]-grillaEval[1])*0.1
   if(grillaEval[length(grillaEval)] == 1) grillaEval[length(grillaEval)] = grillaEval[length(grillaEval)] - (grillaEval[length(grillaEval)]-grillaEval[length(grillaEval) - 1])*0.1
 
-  if(!is.null(distTrans)) {
-    grilla = distTrans(grillaEval)
+  if(!is.null(shiftFun)) {
+    grilla = shiftFun(grillaEval)
   } else {
     grilla = grillaEval
   }

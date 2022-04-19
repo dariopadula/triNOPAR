@@ -4,7 +4,7 @@
 \alias{KL_PAR}
 \title{Estima la funcion de KL para las curvas paramétrica en una grilla d epuntos}
 \usage{
-KL_PAR(nomItem, paramsMIRT, grillaEval, distTrans = qnorm)
+KL_PAR(nomItem, paramsMIRT, grillaEval, shiftFun = qnorm)
 }
 \arguments{
 \item{nomItem}{string con el nombre del item a estimar}
@@ -13,7 +13,7 @@ KL_PAR(nomItem, paramsMIRT, grillaEval, distTrans = qnorm)
 
 \item{grillaEval}{grilla de puntos donde se va a estimar la funcion}
 
-\item{distTrans}{distribucion para transformar la grilla en caso de que la grilla este definida en $\link{0,1}$.}
+\item{shiftFun}{distribucion para transformar la grilla en caso de que la grilla este definida en $\link{0,1}$.}
 }
 \value{
 Un vector con la funcion KL estimada en cada punto de la grilla.

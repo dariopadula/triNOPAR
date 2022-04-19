@@ -228,7 +228,7 @@ infoFunIso = do.call(cbind,
 colnames(infoFunIso) = colnames(icciso_mat)[trials]
 
 
-nIt = 15
+nIt = 1
 plot(qnorm(puntosNP),infoFunPar[,nIt])
 plot(qnorm(puntosNP),infoFunIso[,nIt])
 

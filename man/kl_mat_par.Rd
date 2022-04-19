@@ -4,7 +4,7 @@
 \alias{kl_mat_par}
 \title{Estima la funcion de KL para un conjunto de items estimados de forma parametrica}
 \usage{
-kl_mat_par(paramsMIRT, grillaEval, distTrans = qnorm)
+kl_mat_par(paramsMIRT, grillaEval, shiftFun = qnorm)
 }
 \arguments{
 \item{paramsMIRT}{data frames con los parametros estimados para elmodelo parametrico. Los nombres
@@ -12,7 +12,7 @@ de las filas de este data rame tienen que ser los nomres de los items.}
 
 \item{grillaEval}{grilla de puntos donde se va a estimar la funcion}
 
-\item{distTrans}{distribucion para transformar la grilla en caso de que la grilla este definida en $\link{0,1}$.}
+\item{shiftFun}{distribucion para transformar la grilla en caso de que la grilla este definida en $\link{0,1}$.}
 }
 \value{
 Un data frame con tantas columnas como items y filas como puntos de la grilla
