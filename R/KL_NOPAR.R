@@ -26,8 +26,8 @@ KL_NOPAR = function(iccNP,sepGrilla,entorno) {
   })
 
   ###### Entorno
-  refInf = max(min(iccNP),0.4)
-  refSup = min(max(iccNP),max(0.6,refInf))
+  refInf = max(min(iccNP),0.3)
+  refSup = min(max(iccNP),max(0.7,refInf))
 
   pos40 = which.min(abs(iccNP - refInf))
   pos60 = which.min(abs(iccNP - refSup))

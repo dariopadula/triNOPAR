@@ -4,7 +4,7 @@
 \alias{kl_mat_NOpar}
 \title{Estima la funcion de KL para un conjunto de items estimados de forma NO parametrica}
 \usage{
-kl_mat_NOpar(iccNP_mat, sepGrilla, entorno)
+kl_mat_NOpar(iccNP_mat, sepGrilla, entorno, puntuni)
 }
 \arguments{
 \item{iccNP_mat}{data frames con las estimaciones de las ICC no parametricas. Los nombres de las columnas tienen que ser los nombres
@@ -14,6 +14,8 @@ de los items.}
 
 \item{entorno}{porcentaje que indica cuantos puntos tomar en el entorno del punto a estimar.
 Mismos que la funcion \strong{funKL_int_NOPAR}}
+
+\item{puntuni}{grilla en el intervalo 0 1 donde estan estimados los puntos de la funcion icc no parametrica}
 }
 \value{
 Un data frame con tantas columnas como items y filas como puntos de la grilla

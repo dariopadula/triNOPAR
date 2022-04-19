@@ -24,6 +24,18 @@
 
 derISO_Info = function(iccis,puntuni,nucleo,hd = NULL) {
 
+
+  ##### Calcula la ICCiso en una grilla de theta
+  ## XXX Nuevo
+  thet = qnorm(puntuni)
+  tmax = floor(max(abs(thet)))
+  thetaG = seq(-tmax,tmax,length = length(puntuni))
+
+  iccis<-approx(thet,iccis,thetaG)$y
+
+  #################################################
+  #################################################
+
   ###### Calcula la derivada
   if(is.null(hd)) hd= 0.9*length(iccis)^(-1/5)*min(sd(iccis,na.rm = T),
                                                    (summary(iccis)[5]-summary(iccis)[2])/1.364)
@@ -40,8 +52,8 @@ derISO_Info = function(iccis,puntuni,nucleo,hd = NULL) {
   inform = (deriso^2)/(iccis*(1 - iccis))
 
   ###### Entorno
-  refInf = max(min(iccis),0.4)
-  refSup = min(max(iccis),max(0.6,refInf))
+  refInf = max(min(iccis),0.3)
+  refSup = min(max(iccis),max(0.7,refInf))
 
   pos40 = which.min(abs(iccis - refInf))
   pos60 = which.min(abs(iccis - refSup))
@@ -50,6 +62,13 @@ derISO_Info = function(iccis,puntuni,nucleo,hd = NULL) {
   ##### Me quedo con esos valores y el resto lo mando a cero
   informEntorno = inform*0
   informEntorno[pos40:pos60] = inform[pos40:pos60]
+
+  ##### Reconstruyo los puntos anteriores que corresponden al int 01
+  ## XXX Nuevo
+  informEntorno<-approx(thetaG,informEntorno,thet)$y
+  informEntorno[is.na(informEntorno)] = 0
+  #################################################
+  #################################################
 
   return(list(deriv = deriso,Info = inform,informEntorno = informEntorno))
 }

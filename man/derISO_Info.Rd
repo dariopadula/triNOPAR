@@ -4,17 +4,17 @@
 \alias{derISO_Info}
 \title{Estima la derivada primera de la curva ISO y la funcion de informacion}
 \usage{
-derISO_Info(icciso, puntuni, nucleo, hd = NULL)
+derISO_Info(iccis, puntuni, nucleo, hd = NULL)
 }
 \arguments{
-\item{icciso}{un vector con la estimacion isotonica}
-
 \item{puntuni}{grilla donde esta evaluada la curva iso}
 
 \item{nucleo}{alguna funcion de nucleo de dentro de las opciones en \strong{nucleosAll}}
 
 \item{hd}{ventan para la estimacion, por defecto es NULL, en ese caso se estima segun formula dada, si se engresa un valor,
 se toma ese.}
+
+\item{icciso}{un vector con la estimacion isotonica}
 }
 \value{
 Una lista donde con:
